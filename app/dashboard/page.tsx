@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { createClient } from '@supabase/supabase-js';
-import Chat from '@/components/Chat'; // Ensure you created this component
+import Chat from '../components/Chat'; // Ensure you created this component
 
 const supabase = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL!,
