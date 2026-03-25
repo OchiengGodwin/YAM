@@ -1,0 +1,37 @@
+# --- Dependencies ---
+node_modules/
+.next/
+out/
+build/
+dist/
+bin/
+obj/
+
+# --- Python / Backend ---
+venv/
+.venv/
+env/
+__pycache__/
+*.pyc
+.pytest_cache/
+
+# --- Environment Secrets (CRITICAL) ---
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+.env.sample
+
+# --- OS / IDE Junk ---
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.swp
+*.log
+
+# --- Large Binaries ---
+*.exe
+*.dll
+*.node
