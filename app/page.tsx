@@ -19,7 +19,7 @@ export default function Home() {
         try {
           // 2. Call your FastAPI Backend
           const response = await fetch(
-            `http://127.0.0.1:8000/find-pro?lat=${latitude}&lng=${longitude}&profession=${profession}`
+            `https://yam-mg62.onrender.com/find-pro?lat=${latitude}&lng=${longitude}&profession=${profession}`
           );
           const result = await response.json();
           

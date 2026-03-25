@@ -70,7 +70,7 @@ export default function ProDashboard() {
   const toggleStatus = async () => {
     const newStatus = !isOnline;
     setIsOnline(newStatus);
-    await fetch('http://127.0.0.1:8000/update-status', {
+    await fetch('https://yam-mg62.onrender.com', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ pro_id: user.id, status: newStatus }),
