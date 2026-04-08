@@ -13,8 +13,10 @@ export default function CustomerMap() {
   const [pros, setPros] = useState<any[]>([]);
   const [filter, setFilter] = useState('All');
 
+  const API_URL = process.env.NEXT_PUBLIC_API_URL || 'https://yam-mg62.onrender.com';
+
   const fetchOnlinePros = async () => {
-    const res = await fetch('http://127.0.0.1:8000/all-pros');
+    const res = await fetch(`${API_URL}/all-pros`);
     const result = await res.json();
     if (result.status === "success") {
       // Only show pros who are actually online
@@ -58,9 +60,12 @@ export default function CustomerMap() {
                 <div className="p-2">
                   <p className="font-bold text-lg">{pro.full_name}</p>
                   <p className="text-blue-600 font-medium">{pro.profession}</p>
-                  <button className="mt-2 w-full bg-green-600 text-white py-2 rounded font-bold">
+                  <a
+                    href="/client"
+                    className="mt-2 block w-full bg-green-600 text-white py-2 rounded font-bold text-center"
+                  >
                     Request Now
-                  </button>
+                  </a>
                 </div>
               </Popup>
             </Marker>

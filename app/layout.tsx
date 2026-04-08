@@ -1,6 +1,6 @@
 import './globals.css';
 import { Inter } from 'next/font/google';
-import type { Metadata } from 'next';
+import type { Metadata, Viewport } from 'next';
 
 const inter = Inter({ 
   subsets: ['latin'],
@@ -13,10 +13,14 @@ export const metadata: Metadata = {
     template: '%s | Pro-Connect'
   },
   description: 'The elite platform connecting top-tier professionals with clients in Nairobi.',
-  viewport: 'width=device-width, initial-scale=1',
   icons: {
     icon: '/favicon.ico',
   },
+};
+
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
 };
 
 export default function RootLayout({

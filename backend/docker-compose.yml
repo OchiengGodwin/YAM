@@ -1,0 +1,33 @@
+services:
+  db:
+    image: postgres:16
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: yam
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  api:
+    build: .
+    restart: unless-stopped
+    depends_on:
+      - db
+    environment:
+      APP_NAME: YAM Backend
+      APP_ENV: development
+      APP_DEBUG: "false"
+      APP_HOST: 0.0.0.0
+      APP_PORT: 8000
+      CORS_ORIGINS: http://localhost:3000,http://127.0.0.1:3000
+      DATABASE_URL: postgresql+psycopg://postgres:postgres@db:5432/yam
+      SEARCH_RADIUS_KM: 20
+      SEARCH_LIMIT: 20
+    ports:
+      - "8000:8000"
+
+volumes:
+  postgres_data:

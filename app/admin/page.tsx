@@ -13,10 +13,11 @@ const Popup = dynamic(() => import('react-leaflet').then(mod => mod.Popup), { ss
 export default function AdminDashboard() {
   const [pros, setPros] = useState<any[]>([]);
 
+  const API_URL = process.env.NEXT_PUBLIC_API_URL || 'https://yam-mg62.onrender.com';
+
   useEffect(() => {
     const fetchAllPros = async () => {
-      // We'll create a new 'all-pros' endpoint in FastAPI for this
-      const res = await fetch('http://127.0.0.1:8000/all-pros');
+      const res = await fetch(`${API_URL}/all-pros`);
       const result = await res.json();
       if (result.status === "success") setPros(result.data);
     };
