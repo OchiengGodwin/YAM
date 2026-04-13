@@ -193,8 +193,9 @@ export default function ProSignup() {
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-slate-300 mb-1">Your Profession</label>
+                <label htmlFor="profession" className="block text-sm font-medium text-slate-300 mb-1">Your Profession</label>
                 <select
+                  id="profession"
                   value={profession}
                   onChange={(e) => setProfession(e.target.value)}
                   className="w-full p-3 bg-slate-700 border border-slate-600 rounded-xl text-white focus:outline-none focus:border-blue-500"
