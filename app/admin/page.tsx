@@ -26,9 +26,19 @@ export default function AdminDashboard() {
 
   return (
     <div className="h-screen w-full flex flex-col">
-      <header className="p-6 bg-slate-900 text-white flex justify-between items-center">
-        <h1 className="text-2xl font-bold">Pro-Connect Admin Console</h1>
-        <p className="text-green-400 font-mono">{pros.length} Pros Online</p>
+      <header 
+        className="p-6 flex justify-between items-center"
+        style={{ 
+          background: 'linear-gradient(135deg, #FEFDFB 0%, #F5F0E8 100%)',
+          borderBottom: '1px solid rgba(160, 130, 109, 0.2)'
+        }}
+      >
+        <h1 className="text-2xl font-bold" style={{ color: '#333333' }}>
+          YAM Admin Console
+        </h1>
+        <p className="font-mono text-sm font-bold" style={{ color: '#A0826D' }}>
+          ● {pros.length} Pros Online
+        </p>
       </header>
 
       <div className="flex-1">
@@ -42,10 +52,16 @@ export default function AdminDashboard() {
             return (
               <Marker key={pro.id} position={[parseFloat(coords[1]), parseFloat(coords[0])]}>
                 <Popup>
-                  <div className="font-sans">
-                    <p className="font-bold">{pro.full_name}</p>
-                    <p className="text-blue-600">{pro.profession}</p>
-                    <p className="text-xs text-slate-400">ID: {pro.id.slice(0,8)}</p>
+                  <div style={{ fontFamily: "'Georgia', serif" }}>
+                    <p className="font-bold" style={{ color: '#333333' }}>
+                      {pro.full_name}
+                    </p>
+                    <p style={{ color: '#A0826D' }}>
+                      {pro.profession}
+                    </p>
+                    <p className="text-xs mt-1" style={{ color: '#5F4A42' }}>
+                      ID: {pro.id.slice(0,8)}
+                    </p>
                   </div>
                 </Popup>
               </Marker>

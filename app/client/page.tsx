@@ -160,35 +160,80 @@ export default function ClientPortal() {
   };
 
   return (
-    <main className="min-h-screen bg-slate-900 text-white">
-      <header className="px-6 py-5 border-b border-slate-800 flex items-center justify-between">
-        <Link href="/" className="text-2xl font-extrabold text-blue-400">YAM</Link>
-        <Link href="/login" className="text-sm text-slate-400 hover:text-white transition">Pro Login</Link>
+    <main 
+      className="min-h-screen"
+      style={{ background: 'linear-gradient(135deg, #FEFDFB 0%, #F5F0E8 100%)' }}
+    >
+      <header className="px-6 py-6 border-b flex items-center justify-between" style={{ borderColor: 'rgba(160, 130, 109, 0.2)' }}>
+        <Link href="/" className="text-3xl font-bold" style={{ color: '#A0826D' }}>
+          YAM
+        </Link>
+        <Link 
+          href="/login" 
+          className="text-sm font-medium smooth-transition hover:opacity-70"
+          style={{ color: '#A0826D' }}
+        >
+          Pro Login
+        </Link>
       </header>
 
       <section className="max-w-2xl mx-auto px-6 py-8 space-y-6">
         {activeJob && (
-          <div className={`p-4 rounded-2xl border ${STATUS_STYLES[activeJob.status]}`}>
+          <div 
+            className="p-4 rounded-2xl border smooth-transition"
+            style={{
+              backgroundColor: activeJob.status === 'completed' ? 'rgba(16, 185, 129, 0.1)' : 
+                               activeJob.status === 'accepted' ? 'rgba(59, 130, 246, 0.1)' :
+                               'rgba(245, 158, 11, 0.1)',
+              borderColor: activeJob.status === 'completed' ? '#10B981' : 
+                          activeJob.status === 'accepted' ? '#3B82F6' : '#F59E0B',
+              color: activeJob.status === 'completed' ? '#10B981' : 
+                     activeJob.status === 'accepted' ? '#3B82F6' : '#D97706'
+            }}
+          >
             <p className="font-bold mb-1">Current Request</p>
             <p className="text-sm">{statusLabel}</p>
           </div>
         )}
 
         {locationError && (
-          <div className="p-4 rounded-2xl border border-red-700 bg-red-950/40 text-red-300 text-sm">
+          <div 
+            className="p-4 rounded-2xl border text-sm"
+            style={{
+              backgroundColor: 'rgba(239, 68, 68, 0.1)',
+              borderColor: '#EF4444',
+              color: '#DC2626'
+            }}
+          >
             {locationError}
           </div>
         )}
 
-        <div className="bg-slate-800 border border-slate-700 rounded-3xl p-6">
-          <h1 className="text-2xl font-bold mb-2">Find nearby professionals</h1>
-          <p className="text-slate-400 text-sm mb-5">Pick a service and request the closest available provider.</p>
+        <div 
+          className="rounded-3xl p-6 glass-effect"
+          style={{ background: 'rgba(255, 255, 255, 0.7)' }}
+        >
+          <h1 className="text-3xl font-bold mb-2" style={{ color: '#333333' }}>
+            Find professionals
+          </h1>
+          <p className="text-sm mb-6" style={{ color: '#5F4A42' }}>
+            Pick a service and request the closest available provider.
+          </p>
 
-          <label className="block text-sm text-slate-300 mb-2">Service Type</label>
+          <label className="block text-sm font-semibold mb-2" style={{ color: '#5F4A42' }}>
+            Service Type
+          </label>
           <select
             value={profession}
             onChange={(e) => setProfession(e.target.value)}
-            className="w-full p-3 bg-slate-700 border border-slate-600 rounded-xl mb-4"
+            className="w-full p-3 rounded-xl mb-4 border-2 focus:outline-none smooth-transition"
+            style={{ 
+              borderColor: '#A0826D',
+              backgroundColor: '#FEFDFB',
+              color: '#333333'
+            }}
+            onFocus={(e) => e.currentTarget.style.borderColor = '#3B82F6'}
+            onBlur={(e) => e.currentTarget.style.borderColor = '#A0826D'}
           >
             {PROFESSIONS.map((item) => (
               <option key={item} value={item}>{item}</option>
@@ -198,7 +243,11 @@ export default function ClientPortal() {
           <button
             onClick={handleFindPros}
             disabled={searching}
-            className="w-full py-3 rounded-xl bg-blue-600 hover:bg-blue-500 disabled:opacity-60 font-bold"
+            className="w-full py-3 rounded-xl font-bold text-white smooth-transition hover:shadow-lg"
+            style={{ 
+              backgroundColor: '#A0826D',
+              opacity: searching ? 0.7 : 1
+            }}
           >
             {searching ? 'Searching...' : `Find ${profession}`}
           </button>
@@ -206,17 +255,28 @@ export default function ClientPortal() {
 
         <div className="space-y-3">
           {pros.map((pro) => (
-            <div key={pro.id} className="bg-slate-800 border border-slate-700 rounded-2xl p-4 flex items-center justify-between">
+            <div 
+              key={pro.id} 
+              className="rounded-2xl p-4 glass-effect flex items-center justify-between smooth-transition hover:shadow-lg"
+              style={{ background: 'rgba(255, 255, 255, 0.6)' }}
+            >
               <div>
-                <p className="font-semibold">{pro.full_name}</p>
-                <p className="text-blue-400 text-sm">{pro.profession}</p>
+                <p className="font-semibold" style={{ color: '#333333' }}>
+                  {pro.full_name}
+                </p>
+                <p className="text-sm" style={{ color: '#3B82F6' }}>
+                  {pro.profession}
+                </p>
                 {typeof pro.distance_km === 'number' && (
-                  <p className="text-xs text-slate-500">{pro.distance_km.toFixed(1)} km away</p>
+                  <p className="text-xs" style={{ color: '#5F4A42' }}>
+                    {pro.distance_km.toFixed(1)} km away
+                  </p>
                 )}
               </div>
               <button
                 onClick={() => setSelectedPro(pro)}
-                className="px-4 py-2 bg-green-600 hover:bg-green-500 rounded-full text-sm font-bold"
+                className="px-4 py-2 rounded-full text-sm font-bold text-white smooth-transition hover:shadow-lg"
+                style={{ backgroundColor: '#A0826D' }}
               >
                 Request
               </button>
@@ -226,36 +286,68 @@ export default function ClientPortal() {
       </section>
 
       {selectedPro && (
-        <div className="fixed inset-0 z-50 bg-black/70 flex items-center justify-center p-4">
-          <div className="w-full max-w-md bg-slate-800 border border-slate-600 rounded-3xl p-6">
-            <h2 className="text-xl font-bold mb-1">Request {selectedPro.full_name}</h2>
-            <p className="text-sm text-slate-400 mb-4">{selectedPro.profession}</p>
+        <div 
+          className="fixed inset-0 z-50 flex items-center justify-center p-4"
+          style={{ backgroundColor: 'rgba(0, 0, 0, 0.4)', backdropFilter: 'blur(4px)' }}
+        >
+          <div 
+            className="w-full max-w-md rounded-3xl p-6 glass-effect"
+            style={{ background: 'rgba(255, 255, 255, 0.9)' }}
+          >
+            <h2 className="text-2xl font-bold mb-1" style={{ color: '#333333' }}>
+              Request {selectedPro.full_name}
+            </h2>
+            <p className="text-sm mb-4" style={{ color: '#5F4A42' }}>
+              {selectedPro.profession}
+            </p>
 
             <form onSubmit={submitRequest} className="space-y-3">
               <div>
-                <label className="block text-sm mb-1 text-slate-300">Your Name</label>
+                <label className="block text-sm font-semibold mb-2" style={{ color: '#5F4A42' }}>
+                  Your Name
+                </label>
                 <input
                   value={customerName}
                   onChange={(e) => setCustomerName(e.target.value)}
                   required
-                  className="w-full p-3 bg-slate-700 border border-slate-600 rounded-xl"
+                  className="w-full p-3 rounded-xl border-2 focus:outline-none smooth-transition"
+                  style={{ 
+                    borderColor: '#A0826D',
+                    backgroundColor: '#FEFDFB',
+                    color: '#333333'
+                  }}
+                  onFocus={(e) => e.currentTarget.style.borderColor = '#3B82F6'}
+                  onBlur={(e) => e.currentTarget.style.borderColor = '#A0826D'}
                 />
               </div>
 
               <div>
-                <label className="block text-sm mb-1 text-slate-300">Issue Description</label>
+                <label className="block text-sm font-semibold mb-2" style={{ color: '#5F4A42' }}>
+                  Issue Description
+                </label>
                 <textarea
                   value={issueDescription}
                   onChange={(e) => setIssueDescription(e.target.value)}
                   rows={3}
-                  className="w-full p-3 bg-slate-700 border border-slate-600 rounded-xl"
+                  className="w-full p-3 rounded-xl border-2 focus:outline-none smooth-transition"
+                  style={{ 
+                    borderColor: '#A0826D',
+                    backgroundColor: '#FEFDFB',
+                    color: '#333333'
+                  }}
+                  onFocus={(e) => e.currentTarget.style.borderColor = '#3B82F6'}
+                  onBlur={(e) => e.currentTarget.style.borderColor = '#A0826D'}
                 />
               </div>
 
               <button
                 type="submit"
                 disabled={requesting}
-                className="w-full py-3 rounded-xl bg-blue-600 hover:bg-blue-500 disabled:opacity-60 font-bold"
+                className="w-full py-3 rounded-xl font-bold text-white smooth-transition hover:shadow-lg"
+                style={{ 
+                  backgroundColor: '#A0826D',
+                  opacity: requesting ? 0.7 : 1
+                }}
               >
                 {requesting ? 'Sending request...' : 'Send Request'}
               </button>
@@ -263,7 +355,8 @@ export default function ClientPortal() {
               <button
                 type="button"
                 onClick={() => setSelectedPro(null)}
-                className="w-full py-2 text-slate-400 hover:text-white"
+                className="w-full py-2 font-medium smooth-transition hover:opacity-60"
+                style={{ color: '#5F4A42' }}
               >
                 Cancel
               </button>

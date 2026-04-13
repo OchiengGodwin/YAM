@@ -149,107 +149,198 @@ export default function ProDashboard() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-slate-900 flex items-center justify-center">
+      <div 
+        className="min-h-screen flex items-center justify-center"
+        style={{ background: 'linear-gradient(135deg, #FEFDFB 0%, #F5F0E8 100%)' }}
+      >
         <div className="text-center">
-          <div className="w-10 h-10 border-4 border-blue-600 border-t-transparent rounded-full animate-spin mx-auto mb-3" />
-          <p className="text-slate-400">Loading dashboard...</p>
+          <div 
+            className="w-10 h-10 rounded-full animate-spin mx-auto mb-3 border-4"
+            style={{ 
+              borderColor: 'rgba(59, 130, 246, 0.3)',
+              borderTopColor: '#3B82F6'
+            }}
+          />
+          <p style={{ color: '#5F4A42' }}>Loading dashboard...</p>
         </div>
       </div>
     );
   }
 
   return (
-    <main className="min-h-screen bg-slate-900 text-white p-4">
-      <header className="flex items-center justify-between mb-6 pt-2">
+    <main 
+      className="min-h-screen p-4"
+      style={{ background: 'linear-gradient(135deg, #FEFDFB 0%, #F5F0E8 100%)' }}
+    >
+      <header className="flex items-center justify-between mb-8 pt-2 max-w-2xl mx-auto">
         <div>
-          <span className="text-2xl font-extrabold text-blue-400">YAM</span>
-          <p className="text-slate-500 text-xs mt-0.5">Pro Dashboard</p>
+          <span className="text-3xl font-bold" style={{ color: '#A0826D' }}>YAM</span>
+          <p className="text-sm mt-0.5" style={{ color: '#5F4A42' }}>Pro Dashboard</p>
         </div>
-        <button onClick={signOut} className="text-sm text-slate-400 hover:text-red-400 transition">
+        <button 
+          onClick={signOut} 
+          className="text-sm font-medium smooth-transition hover:opacity-70"
+          style={{ color: '#A0826D' }}
+        >
           Sign Out
         </button>
       </header>
 
-      <div className="max-w-md mx-auto space-y-4">
-        <div className="bg-slate-800 rounded-3xl p-6 border border-slate-700 flex items-center gap-4">
-          <div className="w-14 h-14 bg-blue-600 rounded-2xl flex items-center justify-center text-2xl font-bold shrink-0">
+      <div className="max-w-2xl mx-auto space-y-4">
+        {/* Profile Card */}
+        <div 
+          className="rounded-3xl p-6 glass-effect flex items-center gap-4"
+          style={{ background: 'rgba(255, 255, 255, 0.6)' }}
+        >
+          <div 
+            className="w-14 h-14 rounded-2xl flex items-center justify-center text-2xl font-bold shrink-0 text-white"
+            style={{ backgroundColor: '#A0826D' }}
+          >
             {proProfile?.full_name?.[0]?.toUpperCase() ?? user?.email?.[0]?.toUpperCase() ?? '?'}
           </div>
           <div className="min-w-0">
-            <p className="font-bold text-lg truncate">{proProfile?.full_name ?? 'Pro'}</p>
-            <p className="text-blue-400 text-sm">{proProfile?.profession ?? '—'}</p>
-            <p className="text-slate-500 text-xs truncate">{user?.email}</p>
+            <p className="font-bold text-lg truncate" style={{ color: '#333333' }}>
+              {proProfile?.full_name ?? 'Professional'}
+            </p>
+            <p className="text-sm" style={{ color: '#3B82F6' }}>
+              {proProfile?.profession ?? '—'}
+            </p>
+            <p className="text-xs truncate" style={{ color: '#5F4A42' }}>
+              {user?.email}
+            </p>
           </div>
         </div>
 
+        {/* Status Toggle */}
         {!activeJob && (
-          <div className="bg-slate-800 rounded-3xl p-6 border border-slate-700 flex items-center justify-between">
+          <div 
+            className="rounded-3xl p-6 glass-effect flex items-center justify-between"
+            style={{ background: 'rgba(255, 255, 255, 0.6)' }}
+          >
             <div>
-              <p className="font-bold text-lg flex items-center gap-2">
-                <span className={`w-2.5 h-2.5 rounded-full ${isOnline ? 'bg-green-400 animate-pulse' : 'bg-slate-500'}`} />
+              <p className="font-bold text-lg flex items-center gap-2" style={{ color: '#333333' }}>
+                <span 
+                  className={`w-2.5 h-2.5 rounded-full ${isOnline ? 'animate-pulse' : ''}`}
+                  style={{ backgroundColor: isOnline ? '#10B981' : '#A0826D' }}
+                />
                 {isOnline ? 'Online' : 'Offline'}
               </p>
-              <p className="text-sm text-slate-400">
+              <p className="text-sm" style={{ color: '#5F4A42' }}>
                 {isOnline ? 'Clients can find and request you' : 'You are hidden from clients'}
               </p>
             </div>
             <button
               onClick={toggleStatus}
               disabled={toggling}
-              className={`w-14 h-8 rounded-full transition-colors relative disabled:opacity-60 ${isOnline ? 'bg-green-500' : 'bg-slate-600'}`}
+              className="w-14 h-8 rounded-full relative transition-colors smooth-transition"
+              style={{ 
+                backgroundColor: isOnline ? '#10B981' : '#D1D5DB',
+                opacity: toggling ? 0.6 : 1
+              }}
             >
-              <div className={`absolute top-1 w-6 h-6 bg-white rounded-full shadow transition-all ${isOnline ? 'left-7' : 'left-1'}`} />
+              <div 
+                className="absolute top-1 w-6 h-6 bg-white rounded-full shadow transition-all"
+                style={{ left: isOnline ? '28px' : '4px' }}
+              />
             </button>
           </div>
         )}
 
+        {/* Waiting State */}
         {!activeJob && isOnline && (
-          <div className="bg-slate-800 rounded-3xl p-5 border border-slate-700">
-            <div className="flex items-center gap-3">
-              <div className="w-2 h-2 bg-blue-400 rounded-full animate-pulse" />
-              <p className="text-slate-300 text-sm">Waiting for job requests...</p>
-            </div>
+          <div 
+            className="rounded-3xl p-5 glass-effect flex items-center gap-3"
+            style={{ background: 'rgba(59, 130, 246, 0.08)' }}
+          >
+            <div 
+              className="w-2 h-2 rounded-full animate-pulse"
+              style={{ backgroundColor: '#3B82F6' }}
+            />
+            <p className="text-sm" style={{ color: '#5F4A42' }}>
+              Waiting for job requests...
+            </p>
           </div>
         )}
 
+        {/* Active Job */}
         {activeJob && (
           <div className="space-y-4">
-            <div className="p-4 bg-green-900/30 border border-green-700 rounded-2xl">
-              <p className="text-green-400 font-bold text-sm text-center mb-2">JOB IN PROGRESS</p>
+            <div 
+              className="p-4 rounded-2xl glass-effect border-2"
+              style={{ 
+                backgroundColor: 'rgba(16, 185, 129, 0.08)',
+                borderColor: '#10B981'
+              }}
+            >
+              <p className="font-bold text-sm text-center mb-2" style={{ color: '#10B981' }}>
+                ✓ JOB IN PROGRESS
+              </p>
               {activeJob.customer_name && (
-                <p className="text-white text-sm">Client: <span className="font-semibold">{activeJob.customer_name}</span></p>
+                <p className="text-sm" style={{ color: '#333333' }}>
+                  Client: <span className="font-semibold">{activeJob.customer_name}</span>
+                </p>
               )}
               {activeJob.issue_description && (
-                <p className="text-slate-300 text-sm mt-1 italic">&ldquo;{activeJob.issue_description}&rdquo;</p>
+                <p className="text-sm mt-1 italic" style={{ color: '#5F4A42' }}>
+                  &ldquo;{activeJob.issue_description}&rdquo;
+                </p>
               )}
             </div>
             <Chat jobId={activeJob.id} userId={user.id} />
-            <button onClick={completeJob} className="w-full py-4 bg-blue-600 text-white rounded-2xl font-bold hover:bg-blue-500 transition">
+            <button 
+              onClick={completeJob} 
+              className="w-full py-4 rounded-2xl font-bold text-white smooth-transition hover:shadow-lg"
+              style={{ backgroundColor: '#A0826D' }}
+            >
               Mark as Completed
             </button>
           </div>
         )}
       </div>
 
+      {/* Incoming Job Modal */}
       {incomingJob && (
-        <div className="fixed inset-0 bg-black/70 flex items-end sm:items-center justify-center z-50 p-4 backdrop-blur-sm">
-          <div className="bg-slate-800 p-8 rounded-3xl shadow-2xl max-w-sm w-full border border-slate-600">
+        <div className="fixed inset-0 flex items-end sm:items-center justify-center z-50 p-4" style={{ backgroundColor: 'rgba(0, 0, 0, 0.4)', backdropFilter: 'blur(4px)' }}>
+          <div 
+            className="p-8 rounded-3xl shadow-2xl max-w-sm w-full glass-effect"
+            style={{ background: 'rgba(255, 255, 255, 0.9)' }}
+          >
             <div className="text-center mb-6">
               <div className="text-4xl mb-3">🔔</div>
-              <h3 className="text-2xl font-bold text-white">New Job Request!</h3>
+              <h3 className="text-2xl font-bold" style={{ color: '#333333' }}>
+                New Job Request!
+              </h3>
               {incomingJob.customer_name && (
-                <p className="text-slate-400 mt-1">From: <span className="text-white font-semibold">{incomingJob.customer_name}</span></p>
+                <p className="mt-1" style={{ color: '#5F4A42' }}>
+                  From: <span className="text-base font-semibold" style={{ color: '#333333' }}>
+                    {incomingJob.customer_name}
+                  </span>
+                </p>
               )}
               {incomingJob.issue_description && (
-                <div className="mt-3 p-3 bg-slate-700 rounded-xl text-sm text-slate-300 text-left">
+                <div 
+                  className="mt-3 p-3 rounded-xl text-sm text-left glass-effect"
+                  style={{ 
+                    backgroundColor: 'rgba(160, 130, 109, 0.08)',
+                    color: '#5F4A42'
+                  }}
+                >
                   &ldquo;{incomingJob.issue_description}&rdquo;
                 </div>
               )}
             </div>
-            <button onClick={() => handleAcceptJob(incomingJob)} className="w-full py-4 bg-blue-600 text-white rounded-xl font-bold hover:bg-blue-500 mb-3 transition">
+            <button 
+              onClick={() => handleAcceptJob(incomingJob)} 
+              className="w-full py-4 rounded-xl font-bold text-white smooth-transition hover:shadow-lg mb-3"
+              style={{ backgroundColor: '#A0826D' }}
+            >
               Accept &amp; Navigate
             </button>
-            <button onClick={() => handleDeclineJob(incomingJob)} className="w-full py-3 text-slate-400 hover:text-red-400 font-medium transition text-sm">
+            <button 
+              onClick={() => handleDeclineJob(incomingJob)} 
+              className="w-full py-3 font-medium smooth-transition text-sm hover:opacity-60"
+              style={{ color: '#5F4A42' }}
+            >
               Decline
             </button>
           </div>

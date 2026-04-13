@@ -1,39 +1,80 @@
+@import url('https://fonts.googleapis.com/css2?family=Georgia:wght@400;700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 :root {
-  --background: #ffffff;
-  --foreground: #0f172a; /* Navy/Slate 900 */
-  --accent: #2563eb;     /* Professional Blue */
+  --background: #FEFDFB;
+  --foreground: #333333;
+  --primary-brown: #A0826D;
+  --dark-brown: #5F4A42;
+  --accent-blue: #3B82F6;
+  --translucent-blue: rgba(59, 130, 246, 0.1);
+  --light-brown-bg: #F5F0E8;
+  --cream: #FAF9F6;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #020617;
-    --foreground: #f8fafc;
+    --background: #1A1814;
+    --foreground: #F5F0E8;
+    --primary-brown: #D4B5A0;
+    --dark-brown: #A0826D;
+    --translucent-blue: rgba(59, 130, 246, 0.15);
+    --light-brown-bg: #2A231E;
   }
+}
+
+* {
+  font-family: 'Georgia', serif;
 }
 
 body {
   color: var(--foreground);
   background: var(--background);
-  font-feature-settings: "ss01", "ss02", "cv01", "cv02", "cv03";
+  font-family: 'Georgia', serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 /* Custom scrollbar for a sleek "Pro" feel */
 ::-webkit-scrollbar {
-  width: 6px;
+  width: 8px;
+  height: 8px;
 }
 ::-webkit-scrollbar-track {
-  background: transparent;
+  background: var(--light-brown-bg);
+  border-radius: 10px;
 }
 ::-webkit-scrollbar-thumb {
-  background: #cbd5e1;
+  background: var(--primary-brown);
   border-radius: 10px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #94a3b8;
+  background: var(--dark-brown);
+}
+
+/* Modern 2026 glass effect */
+.glass-effect {
+  background: rgba(255, 255, 255, 0.7);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(160, 130, 109, 0.2);
+}
+
+/* Translucent blue accents */
+.blue-accent {
+  background: var(--translucent-blue);
+  color: var(--accent-blue);
+}
+
+/* Smooth transitions */
+.smooth-transition {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }

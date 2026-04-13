@@ -38,44 +38,77 @@ export default function LoginPage() {
   };
 
   return (
-    <main className="min-h-screen bg-slate-900 flex items-center justify-center p-6">
+    <main 
+      className="min-h-screen flex items-center justify-center p-6"
+      style={{ background: 'linear-gradient(135deg, #FEFDFB 0%, #F5F0E8 100%)' }}
+    >
       <div className="w-full max-w-md">
         {/* Logo */}
         <div className="text-center mb-8">
-          <Link href="/" className="text-3xl font-extrabold text-blue-400">YAM</Link>
-          <p className="text-slate-400 mt-2">Professional Sign In</p>
+          <Link href="/" className="text-4xl font-bold" style={{ color: '#A0826D' }}>
+            YAM
+          </Link>
+          <p className="mt-2 text-lg" style={{ color: '#5F4A42' }}>Professional Sign In</p>
         </div>
 
-        <div className="bg-slate-800 rounded-3xl p-8 border border-slate-700">
-          <h1 className="text-2xl font-bold text-white mb-6">Welcome back</h1>
+        <div 
+          className="rounded-3xl p-8 glass-effect"
+          style={{ background: 'rgba(255, 255, 255, 0.8)' }}
+        >
+          <h1 className="text-3xl font-bold mb-6" style={{ color: '#333333' }}>Welcome back</h1>
 
           {error && (
-            <div className="mb-4 p-3 bg-red-900/40 border border-red-700 rounded-xl text-red-300 text-sm">
+            <div 
+              className="mb-4 p-4 rounded-xl text-sm border"
+              style={{ 
+                backgroundColor: 'rgba(239, 68, 68, 0.1)',
+                borderColor: '#EF4444',
+                color: '#DC2626'
+              }}
+            >
               {error}
             </div>
           )}
 
           <form onSubmit={handleLogin} className="space-y-4">
             <div>
-              <label className="block text-sm font-medium text-slate-300 mb-1">Email</label>
+              <label className="block text-sm font-semibold mb-2" style={{ color: '#5F4A42' }}>
+                Email
+              </label>
               <input
                 type="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required
-                className="w-full p-3 bg-slate-700 border border-slate-600 rounded-xl text-white placeholder-slate-400 focus:outline-none focus:border-blue-500"
+                className="w-full p-3 rounded-xl border-2 focus:outline-none smooth-transition"
+                style={{ 
+                  borderColor: '#A0826D',
+                  backgroundColor: '#FEFDFB',
+                  color: '#333333'
+                }}
+                onFocus={(e) => e.target.style.borderColor = '#3B82F6'}
+                onBlur={(e) => e.target.style.borderColor = '#A0826D'}
                 placeholder="you@example.com"
               />
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-slate-300 mb-1">Password</label>
+              <label className="block text-sm font-semibold mb-2" style={{ color: '#5F4A42' }}>
+                Password
+              </label>
               <input
                 type="password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 required
-                className="w-full p-3 bg-slate-700 border border-slate-600 rounded-xl text-white placeholder-slate-400 focus:outline-none focus:border-blue-500"
+                className="w-full p-3 rounded-xl border-2 focus:outline-none smooth-transition"
+                style={{ 
+                  borderColor: '#A0826D',
+                  backgroundColor: '#FEFDFB',
+                  color: '#333333'
+                }}
+                onFocus={(e) => e.target.style.borderColor = '#3B82F6'}
+                onBlur={(e) => e.target.style.borderColor = '#A0826D'}
                 placeholder="••••••••"
               />
             </div>
@@ -83,22 +116,36 @@ export default function LoginPage() {
             <button
               type="submit"
               disabled={loading}
-              className="w-full py-3 bg-blue-600 text-white rounded-xl font-bold hover:bg-blue-500 transition disabled:opacity-50 mt-2"
+              className="w-full py-3 rounded-xl font-bold text-white smooth-transition hover:shadow-lg mt-2"
+              style={{ 
+                backgroundColor: '#A0826D',
+                opacity: loading ? 0.7 : 1
+              }}
             >
               {loading ? 'Signing in...' : 'Sign In'}
             </button>
           </form>
 
-          <p className="text-center text-slate-400 text-sm mt-6">
+          <p className="text-center text-sm mt-6" style={{ color: '#5F4A42' }}>
             New professional?{' '}
-            <Link href="/signup" className="text-blue-400 font-medium hover:underline">
+            <Link 
+              href="/signup" 
+              className="font-semibold smooth-transition hover:underline"
+              style={{ color: '#3B82F6' }}
+            >
               Create an account
             </Link>
           </p>
 
-          <div className="mt-4 pt-4 border-t border-slate-700 text-center">
-            <p className="text-slate-500 text-sm">Looking for a service instead?</p>
-            <Link href="/client" className="text-blue-400 text-sm font-medium hover:underline">
+          <div className="mt-6 pt-6 border-t" style={{ borderColor: 'rgba(160, 130, 109, 0.2)' }}>
+            <p className="text-sm text-center mb-2" style={{ color: '#5F4A42' }}>
+              Looking for a service instead?
+            </p>
+            <Link 
+              href="/client" 
+              className="text-sm font-semibold smooth-transition hover:underline text-center block"
+              style={{ color: '#3B82F6' }}
+            >
               Go to Client Portal →
             </Link>
           </div>

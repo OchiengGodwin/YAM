@@ -17,99 +17,147 @@ const steps = [
 
 export default function LandingPage() {
   return (
-    <main className="min-h-screen bg-slate-900 text-white">
+    <main className="min-h-screen" style={{ background: 'linear-gradient(135deg, #FEFDFB 0%, #F5F0E8 100%)' }}>
       {/* Navbar */}
-      <nav className="flex justify-between items-center px-6 md:px-12 py-5 border-b border-slate-800">
-        <span className="text-2xl font-extrabold tracking-tight text-blue-400">YAM</span>
-        <div className="flex gap-3">
-          <Link href="/login" className="px-5 py-2 rounded-full border border-slate-600 text-slate-300 text-sm font-medium hover:border-slate-400 transition">
+      <nav className="flex justify-between items-center px-6 md:px-12 py-6 border-b" style={{ borderColor: 'rgba(160, 130, 109, 0.2)' }}>
+        <span className="text-3xl font-bold" style={{ color: '#A0826D' }}>YAM</span>
+        <div className="flex gap-4">
+          <Link 
+            href="/login" 
+            className="smooth-transition px-6 py-2.5 rounded-full text-sm font-semibold"
+            style={{ 
+              color: '#A0826D',
+              border: '2px solid #A0826D',
+            }}
+          >
             Pro Login
           </Link>
-          <Link href="/signup" className="px-5 py-2 rounded-full bg-blue-600 text-white text-sm font-bold hover:bg-blue-500 transition">
+          <Link 
+            href="/signup" 
+            className="smooth-transition px-6 py-2.5 rounded-full text-white text-sm font-bold hover:shadow-lg"
+            style={{ 
+              backgroundColor: '#A0826D',
+            }}
+          >
             Join as Pro
           </Link>
         </div>
       </nav>
 
-      {/* Hero */}
-      <section className="text-center px-6 pt-20 pb-16">
-        <p className="text-blue-400 text-sm font-semibold uppercase tracking-widest mb-4">
-          Your City. Your Pros.
+      {/* Hero with Map Focus */}
+      <section className="px-6 pt-16 pb-12 text-center">
+        <p className="text-sm font-semibold uppercase tracking-wider mb-4" style={{ color: '#3B82F6' }}>
+          ✨ On-Demand Professional Services
         </p>
-        <h1 className="text-5xl md:text-6xl font-extrabold leading-tight mb-6">
-          Any service, anywhere,
+        <h1 className="text-5xl md:text-7xl font-bold leading-tight mb-6" style={{ color: '#333333' }}>
+          Any service,
           <br />
-          <span className="text-blue-400">in minutes.</span>
+          <span style={{ color: '#A0826D' }}>anywhere,</span>
+          <br />
+          <span style={{ color: '#3B82F6' }}>instantly</span>
         </h1>
-        <p className="text-slate-400 text-lg max-w-xl mx-auto mb-10">
+        <p className="text-lg max-w-2xl mx-auto mb-12" style={{ color: '#5F4A42' }}>
           Connect with verified local professionals instantly — like ordering a ride, but for skilled services.
         </p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
           <Link
             href="/client"
-            className="px-8 py-4 bg-blue-600 text-white rounded-full font-bold text-lg hover:bg-blue-500 transition shadow-lg shadow-blue-900/50"
+            className="smooth-transition px-8 py-4 rounded-full font-semibold text-lg text-white shadow-lg hover:shadow-xl"
+            style={{ 
+              backgroundColor: '#A0826D',
+            }}
           >
             I Need a Service
           </Link>
           <Link
             href="/signup"
-            className="px-8 py-4 bg-slate-800 text-white rounded-full font-bold text-lg hover:bg-slate-700 border border-slate-600 transition"
+            className="smooth-transition px-8 py-4 rounded-full font-semibold text-lg glass-effect"
+            style={{ 
+              color: '#333333',
+            }}
           >
             I&apos;m a Professional
           </Link>
         </div>
       </section>
 
+      {/* Map Preview Section */}
+      <section className="px-6 pb-20 max-w-5xl mx-auto">
+        <div 
+          className="rounded-3xl h-96 flex items-center justify-center text-center glass-effect"
+          style={{ background: 'rgba(59, 130, 246, 0.08)' }}
+        >
+          <div>
+            <div className="text-5xl mb-4">🗺️</div>
+            <p className="text-lg font-semibold" style={{ color: '#5F4A42' }}>
+              Local professionals near you
+            </p>
+            <p className="text-sm" style={{ color: '#A0826D' }}>
+              Sign in to see availability in your area
+            </p>
+          </div>
+        </div>
+      </section>
+
       {/* Services Grid */}
-      <section className="px-6 pb-20 max-w-4xl mx-auto">
-        <h2 className="text-center text-slate-500 text-sm uppercase tracking-widest mb-8">
-          Services Available
+      <section className="px-6 pb-20 max-w-5xl mx-auto">
+        <h2 className="text-center text-sm uppercase tracking-widest mb-12 font-bold" style={{ color: '#A0826D' }}>
+          Available Services
         </h2>
-        <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-6">
           {services.map((s) => (
             <div
               key={s.label}
-              className="p-5 bg-slate-800 rounded-2xl border border-slate-700 hover:border-blue-500 transition cursor-pointer group"
+              className="smooth-transition p-6 rounded-2xl hover:shadow-lg cursor-pointer glass-effect"
+              style={{ background: 'rgba(160, 130, 109, 0.08)' }}
             >
-              <div className="text-3xl mb-3">{s.icon}</div>
-              <p className="font-bold text-white group-hover:text-blue-400 transition">{s.label}</p>
-              <p className="text-slate-400 text-sm mt-1">{s.desc}</p>
+              <div className="text-4xl mb-4">{s.icon}</div>
+              <p className="font-bold text-lg mb-1" style={{ color: '#333333' }}>{s.label}</p>
+              <p className="text-sm" style={{ color: '#5F4A42' }}>{s.desc}</p>
             </div>
           ))}
         </div>
       </section>
 
       {/* How It Works */}
-      <section className="bg-slate-800 py-16 px-6">
-        <h2 className="text-center text-2xl font-bold mb-12">How It Works</h2>
-        <div className="max-w-3xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+      <section className="py-20 px-6" style={{ background: 'rgba(160, 130, 109, 0.06)' }}>
+        <h2 className="text-center text-4xl font-bold mb-16" style={{ color: '#333333' }}>How It Works</h2>
+        <div className="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
           {steps.map((item) => (
-            <div key={item.step}>
-              <div className="text-blue-400 font-mono text-4xl font-bold mb-3">{item.step}</div>
-              <p className="font-bold text-lg mb-2">{item.title}</p>
-              <p className="text-slate-400 text-sm">{item.desc}</p>
+            <div key={item.step} className="text-center">
+              <div 
+                className="inline-flex items-center justify-center w-16 h-16 rounded-full mb-6 font-bold text-xl text-white"
+                style={{ backgroundColor: '#A0826D' }}
+              >
+                {item.step}
+              </div>
+              <p className="font-bold text-xl mb-3" style={{ color: '#333333' }}>{item.title}</p>
+              <p className="text-base" style={{ color: '#5F4A42' }}>{item.desc}</p>
             </div>
           ))}
         </div>
       </section>
 
       {/* CTA Banner */}
-      <section className="py-16 px-6 text-center">
-        <h2 className="text-3xl font-bold mb-4">Are you a skilled professional?</h2>
-        <p className="text-slate-400 mb-8 max-w-md mx-auto">
-          Join hundreds of pros already earning more by connecting with clients near them.
+      <section className="py-20 px-6 text-center">
+        <h2 className="text-4xl font-bold mb-6" style={{ color: '#333333' }}>
+          Skilled and ready to earn?
+        </h2>
+        <p className="text-lg max-w-2xl mx-auto mb-10" style={{ color: '#5F4A42' }}>
+          Join hundreds of verified professionals already growing their income by connecting with clients near them.
         </p>
         <Link
           href="/signup"
-          className="px-8 py-4 bg-blue-600 text-white rounded-full font-bold text-lg hover:bg-blue-500 transition"
+          className="inline-block smooth-transition px-8 py-4 rounded-full font-bold text-lg text-white shadow-lg hover:shadow-xl"
+          style={{ backgroundColor: '#A0826D' }}
         >
           Start Earning Today
         </Link>
       </section>
 
       {/* Footer */}
-      <footer className="text-center py-8 text-slate-500 text-sm border-t border-slate-800">
-        © {new Date().getFullYear()} YAM Pro-Connect · Built for Nairobi and beyond.
+      <footer className="text-center py-10 text-sm border-t" style={{ borderColor: 'rgba(160, 130, 109, 0.2)', color: '#A0826D' }}>
+        © {new Date().getFullYear()} YAM · Connect Professionals with Clients Instantly
       </footer>
     </main>
   );

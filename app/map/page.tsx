@@ -35,14 +35,24 @@ export default function CustomerMap() {
   return (
     <div className="h-screen w-full relative">
       {/* --- Overlay UI --- */}
-      <div className="absolute top-4 left-1/2 -translate-x-1/2 z-[1000] bg-white p-4 rounded-full shadow-2xl flex gap-2 border border-slate-200">
+      <div 
+        className="absolute top-4 left-1/2 -translate-x-1/2 z-[1000] p-4 rounded-full shadow-2xl flex gap-2"
+        style={{ 
+          background: 'rgba(255, 255, 255, 0.9)',
+          border: '1px solid rgba(160, 130, 109, 0.2)',
+          backdropFilter: 'blur(10px)'
+        }}
+      >
         {['All', 'Mechanic', 'Electrician', 'Plumber'].map((type) => (
           <button
             key={type}
             onClick={() => setFilter(type)}
-            className={`px-6 py-2 rounded-full text-sm font-bold transition ${
-              filter === type ? 'bg-blue-600 text-white' : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
-            }`}
+            className="px-6 py-2 rounded-full text-sm font-bold transition smooth-transition"
+            style={{
+              backgroundColor: filter === type ? '#A0826D' : '#F5F0E8',
+              color: filter === type ? 'white' : '#333333',
+              border: filter === type ? 'none' : '1px solid #A0826D'
+            }}
           >
             {type}
           </button>
@@ -57,12 +67,17 @@ export default function CustomerMap() {
           return (
             <Marker key={pro.id} position={[parseFloat(coords[1]), parseFloat(coords[0])]}>
               <Popup>
-                <div className="p-2">
-                  <p className="font-bold text-lg">{pro.full_name}</p>
-                  <p className="text-blue-600 font-medium">{pro.profession}</p>
+                <div className="p-2" style={{ fontFamily: "'Georgia', serif" }}>
+                  <p className="font-bold text-lg" style={{ color: '#333333' }}>
+                    {pro.full_name}
+                  </p>
+                  <p className="font-medium" style={{ color: '#A0826D' }}>
+                    {pro.profession}
+                  </p>
                   <a
                     href="/client"
-                    className="mt-2 block w-full bg-green-600 text-white py-2 rounded font-bold text-center"
+                    className="mt-2 block w-full py-2 rounded font-bold text-center text-white smooth-transition hover:shadow-lg"
+                    style={{ backgroundColor: '#A0826D' }}
                   >
                     Request Now
                   </a>
