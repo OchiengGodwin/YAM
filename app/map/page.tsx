@@ -33,14 +33,15 @@ export default function CustomerMap() {
   const filteredPros = filter === 'All' ? pros : pros.filter(p => p.profession === filter);
 
   return (
-    <div className="h-screen w-full relative">
+    <div className="h-screen w-full relative lyft-gradient-bg">
       {/* --- Overlay UI --- */}
       <div 
-        className="absolute top-4 left-1/2 -translate-x-1/2 z-[1000] p-4 rounded-full shadow-2xl flex gap-2"
+        className="absolute top-4 left-1/2 -translate-x-1/2 z-[1000] p-4 rounded-full shadow-2xl flex gap-2 lyft-panel"
         style={{ 
           background: 'rgba(255, 255, 255, 0.9)',
-          border: '1px solid rgba(160, 130, 109, 0.2)',
-          backdropFilter: 'blur(10px)'
+          border: '2px solid rgba(37, 99, 235, 0.32)',
+          backdropFilter: 'blur(10px)',
+          WebkitBackdropFilter: 'blur(10px)'
         }}
       >
         {['All', 'Mechanic', 'Electrician', 'Plumber'].map((type) => (
@@ -49,9 +50,9 @@ export default function CustomerMap() {
             onClick={() => setFilter(type)}
             className="px-6 py-2 rounded-full text-sm font-bold transition smooth-transition"
             style={{
-              backgroundColor: filter === type ? '#A0826D' : '#F5F0E8',
-              color: filter === type ? 'white' : '#333333',
-              border: filter === type ? 'none' : '1px solid #A0826D'
+              backgroundColor: filter === type ? '#1E40AF' : 'rgba(37, 99, 235, 0.1)',
+              color: filter === type ? 'white' : '#1E40AF',
+              border: filter === type ? '2px solid rgba(37, 99, 235, 0.45)' : '2px solid rgba(37, 99, 235, 0.3)'
             }}
           >
             {type}
@@ -77,7 +78,7 @@ export default function CustomerMap() {
                   <a
                     href="/client"
                     className="mt-2 block w-full py-2 rounded font-bold text-center text-white smooth-transition hover:shadow-lg"
-                    style={{ backgroundColor: '#A0826D' }}
+                    style={{ backgroundColor: '#1E40AF', border: '2px solid rgba(37, 99, 235, 0.45)' }}
                   >
                     Request Now
                   </a>

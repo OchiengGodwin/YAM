@@ -9,8 +9,9 @@
   --foreground: #333333;
   --primary-brown: #A0826D;
   --dark-brown: #5F4A42;
-  --accent-blue: #3B82F6;
-  --translucent-blue: rgba(59, 130, 246, 0.1);
+  --accent-blue: #2563EB;
+  --translucent-blue: rgba(37, 99, 235, 0.18);
+  --deep-blue: #1E40AF;
   --light-brown-bg: #F5F0E8;
   --cream: #FAF9F6;
 }
@@ -77,4 +78,43 @@ html {
 /* Smooth transitions */
 .smooth-transition {
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.lyft-gradient-bg {
+  background: linear-gradient(140deg, #fefdfb 0%, #f5f0e8 48%, rgba(37, 99, 235, 0.16) 100%);
+}
+
+.lyft-topbar {
+  border-bottom: 2px solid rgba(37, 99, 235, 0.26);
+  background: rgba(255, 255, 255, 0.86);
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+}
+
+.lyft-panel {
+  border: 2px solid rgba(37, 99, 235, 0.28);
+  border-radius: 1.5rem;
+  background: rgba(255, 255, 255, 0.78);
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 20px 44px rgba(37, 99, 235, 0.12);
+}
+
+.lyft-primary-btn {
+  background: linear-gradient(135deg, var(--primary-brown), #8b6d59);
+  color: #fff;
+  border: 2px solid rgba(95, 74, 66, 0.25);
+}
+
+.lyft-secondary-btn {
+  background: rgba(37, 99, 235, 0.1);
+  color: var(--deep-blue);
+  border: 2px solid rgba(37, 99, 235, 0.5);
+}
+
+.lyft-pill {
+  border-radius: 999px;
+  border: 2px solid rgba(37, 99, 235, 0.4);
+  background: rgba(37, 99, 235, 0.12);
+  color: var(--deep-blue);
 }

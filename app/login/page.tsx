@@ -40,7 +40,7 @@ export default function LoginPage() {
   return (
     <main 
       className="min-h-screen flex items-center justify-center p-6"
-      style={{ background: 'linear-gradient(135deg, #FEFDFB 0%, #F5F0E8 100%)' }}
+      style={{ background: 'linear-gradient(140deg, #FEFDFB 0%, #F5F0E8 50%, rgba(37, 99, 235, 0.16) 100%)' }}
     >
       <div className="w-full max-w-md">
         {/* Logo */}
@@ -48,11 +48,11 @@ export default function LoginPage() {
           <Link href="/" className="text-4xl font-bold" style={{ color: '#A0826D' }}>
             YAM
           </Link>
-          <p className="mt-2 text-lg" style={{ color: '#5F4A42' }}>Professional Sign In</p>
+          <p className="mt-2 text-lg" style={{ color: '#1E40AF' }}>Professional Sign In</p>
         </div>
 
         <div 
-          className="rounded-3xl p-8 glass-effect"
+          className="rounded-3xl p-8 lyft-panel"
           style={{ background: 'rgba(255, 255, 255, 0.8)' }}
         >
           <h1 className="text-3xl font-bold mb-6" style={{ color: '#333333' }}>Welcome back</h1>
@@ -116,9 +116,8 @@ export default function LoginPage() {
             <button
               type="submit"
               disabled={loading}
-              className="w-full py-3 rounded-xl font-bold text-white smooth-transition hover:shadow-lg mt-2"
+              className="w-full py-3 rounded-xl font-bold text-white smooth-transition hover:shadow-lg mt-2 lyft-primary-btn"
               style={{ 
-                backgroundColor: '#A0826D',
                 opacity: loading ? 0.7 : 1
               }}
             >
@@ -131,7 +130,7 @@ export default function LoginPage() {
             <Link 
               href="/signup" 
               className="font-semibold smooth-transition hover:underline"
-              style={{ color: '#3B82F6' }}
+              style={{ color: '#1E40AF' }}
             >
               Create an account
             </Link>
@@ -144,7 +143,7 @@ export default function LoginPage() {
             <Link 
               href="/client" 
               className="text-sm font-semibold smooth-transition hover:underline text-center block"
-              style={{ color: '#3B82F6' }}
+              style={{ color: '#1E40AF' }}
             >
               Go to Client Portal →
             </Link>

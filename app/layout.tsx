@@ -24,7 +24,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className="scroll-smooth">
-      <body className="min-h-screen flex flex-col" style={{ fontFamily: "'Georgia', serif" }}>
+      <body className="min-h-screen flex flex-col">
         <main className="flex-grow">
           {children}
         </main>

@@ -151,14 +151,14 @@ export default function ProDashboard() {
     return (
       <div 
         className="min-h-screen flex items-center justify-center"
-        style={{ background: 'linear-gradient(135deg, #FEFDFB 0%, #F5F0E8 100%)' }}
+        style={{ background: 'linear-gradient(140deg, #FEFDFB 0%, #F5F0E8 50%, rgba(37, 99, 235, 0.16) 100%)' }}
       >
         <div className="text-center">
           <div 
             className="w-10 h-10 rounded-full animate-spin mx-auto mb-3 border-4"
             style={{ 
-              borderColor: 'rgba(59, 130, 246, 0.3)',
-              borderTopColor: '#3B82F6'
+              borderColor: 'rgba(37, 99, 235, 0.4)',
+              borderTopColor: '#1E40AF'
             }}
           />
           <p style={{ color: '#5F4A42' }}>Loading dashboard...</p>
@@ -170,7 +170,7 @@ export default function ProDashboard() {
   return (
     <main 
       className="min-h-screen p-4"
-      style={{ background: 'linear-gradient(135deg, #FEFDFB 0%, #F5F0E8 100%)' }}
+      style={{ background: 'linear-gradient(140deg, #FEFDFB 0%, #F5F0E8 50%, rgba(37, 99, 235, 0.16) 100%)' }}
     >
       <header className="flex items-center justify-between mb-8 pt-2 max-w-2xl mx-auto">
         <div>
@@ -189,7 +189,7 @@ export default function ProDashboard() {
       <div className="max-w-2xl mx-auto space-y-4">
         {/* Profile Card */}
         <div 
-          className="rounded-3xl p-6 glass-effect flex items-center gap-4"
+          className="rounded-3xl p-6 lyft-panel flex items-center gap-4"
           style={{ background: 'rgba(255, 255, 255, 0.6)' }}
         >
           <div 
@@ -214,7 +214,7 @@ export default function ProDashboard() {
         {/* Status Toggle */}
         {!activeJob && (
           <div 
-            className="rounded-3xl p-6 glass-effect flex items-center justify-between"
+            className="rounded-3xl p-6 lyft-panel flex items-center justify-between"
             style={{ background: 'rgba(255, 255, 255, 0.6)' }}
           >
             <div>
@@ -249,8 +249,8 @@ export default function ProDashboard() {
         {/* Waiting State */}
         {!activeJob && isOnline && (
           <div 
-            className="rounded-3xl p-5 glass-effect flex items-center gap-3"
-            style={{ background: 'rgba(59, 130, 246, 0.08)' }}
+            className="rounded-3xl p-5 lyft-panel flex items-center gap-3"
+            style={{ background: 'rgba(37, 99, 235, 0.12)' }}
           >
             <div 
               className="w-2 h-2 rounded-full animate-pulse"
@@ -289,8 +289,7 @@ export default function ProDashboard() {
             <Chat jobId={activeJob.id} userId={user.id} />
             <button 
               onClick={completeJob} 
-              className="w-full py-4 rounded-2xl font-bold text-white smooth-transition hover:shadow-lg"
-              style={{ backgroundColor: '#A0826D' }}
+              className="w-full py-4 rounded-2xl font-bold text-white smooth-transition hover:shadow-lg lyft-primary-btn"
             >
               Mark as Completed
             </button>
@@ -302,7 +301,7 @@ export default function ProDashboard() {
       {incomingJob && (
         <div className="fixed inset-0 flex items-end sm:items-center justify-center z-50 p-4" style={{ backgroundColor: 'rgba(0, 0, 0, 0.4)', backdropFilter: 'blur(4px)' }}>
           <div 
-            className="p-8 rounded-3xl shadow-2xl max-w-sm w-full glass-effect"
+            className="p-8 rounded-3xl shadow-2xl max-w-sm w-full lyft-panel"
             style={{ background: 'rgba(255, 255, 255, 0.9)' }}
           >
             <div className="text-center mb-6">
@@ -331,8 +330,7 @@ export default function ProDashboard() {
             </div>
             <button 
               onClick={() => handleAcceptJob(incomingJob)} 
-              className="w-full py-4 rounded-xl font-bold text-white smooth-transition hover:shadow-lg mb-3"
-              style={{ backgroundColor: '#A0826D' }}
+              className="w-full py-4 rounded-xl font-bold text-white smooth-transition hover:shadow-lg mb-3 lyft-primary-btn"
             >
               Accept &amp; Navigate
             </button>

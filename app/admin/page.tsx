@@ -25,18 +25,18 @@ export default function AdminDashboard() {
   }, []);
 
   return (
-    <div className="h-screen w-full flex flex-col">
+    <div className="h-screen w-full flex flex-col lyft-gradient-bg">
       <header 
-        className="p-6 flex justify-between items-center"
+        className="p-6 flex justify-between items-center lyft-topbar"
         style={{ 
           background: 'linear-gradient(135deg, #FEFDFB 0%, #F5F0E8 100%)',
-          borderBottom: '1px solid rgba(160, 130, 109, 0.2)'
+          borderBottom: '2px solid rgba(37, 99, 235, 0.28)'
         }}
       >
         <h1 className="text-2xl font-bold" style={{ color: '#333333' }}>
           YAM Admin Console
         </h1>
-        <p className="font-mono text-sm font-bold" style={{ color: '#A0826D' }}>
+        <p className="font-mono text-sm font-bold" style={{ color: '#1E40AF' }}>
           ● {pros.length} Pros Online
         </p>
       </header>
@@ -56,7 +56,7 @@ export default function AdminDashboard() {
                     <p className="font-bold" style={{ color: '#333333' }}>
                       {pro.full_name}
                     </p>
-                    <p style={{ color: '#A0826D' }}>
+                    <p style={{ color: '#1E40AF' }}>
                       {pro.profession}
                     </p>
                     <p className="text-xs mt-1" style={{ color: '#5F4A42' }}>

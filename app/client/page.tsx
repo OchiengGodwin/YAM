@@ -162,9 +162,9 @@ export default function ClientPortal() {
   return (
     <main 
       className="min-h-screen"
-      style={{ background: 'linear-gradient(135deg, #FEFDFB 0%, #F5F0E8 100%)' }}
+      style={{ background: 'linear-gradient(140deg, #FEFDFB 0%, #F5F0E8 50%, rgba(37, 99, 235, 0.16) 100%)' }}
     >
-      <header className="px-6 py-6 border-b flex items-center justify-between" style={{ borderColor: 'rgba(160, 130, 109, 0.2)' }}>
+      <header className="px-6 py-6 border-b-2 flex items-center justify-between lyft-topbar" style={{ borderColor: 'rgba(37, 99, 235, 0.26)' }}>
         <Link href="/" className="text-3xl font-bold" style={{ color: '#A0826D' }}>
           YAM
         </Link>
@@ -210,7 +210,7 @@ export default function ClientPortal() {
         )}
 
         <div 
-          className="rounded-3xl p-6 glass-effect"
+          className="rounded-3xl p-6 lyft-panel"
           style={{ background: 'rgba(255, 255, 255, 0.7)' }}
         >
           <h1 className="text-3xl font-bold mb-2" style={{ color: '#333333' }}>
@@ -243,9 +243,8 @@ export default function ClientPortal() {
           <button
             onClick={handleFindPros}
             disabled={searching}
-            className="w-full py-3 rounded-xl font-bold text-white smooth-transition hover:shadow-lg"
+            className="w-full py-3 rounded-xl font-bold text-white smooth-transition hover:shadow-lg lyft-primary-btn"
             style={{ 
-              backgroundColor: '#A0826D',
               opacity: searching ? 0.7 : 1
             }}
           >
@@ -276,7 +275,7 @@ export default function ClientPortal() {
               <button
                 onClick={() => setSelectedPro(pro)}
                 className="px-4 py-2 rounded-full text-sm font-bold text-white smooth-transition hover:shadow-lg"
-                style={{ backgroundColor: '#A0826D' }}
+                  style={{ backgroundColor: '#1E40AF', border: '2px solid rgba(37, 99, 235, 0.45)' }}
               >
                 Request
               </button>
@@ -291,7 +290,7 @@ export default function ClientPortal() {
           style={{ backgroundColor: 'rgba(0, 0, 0, 0.4)', backdropFilter: 'blur(4px)' }}
         >
           <div 
-            className="w-full max-w-md rounded-3xl p-6 glass-effect"
+            className="w-full max-w-md rounded-3xl p-6 lyft-panel"
             style={{ background: 'rgba(255, 255, 255, 0.9)' }}
           >
             <h2 className="text-2xl font-bold mb-1" style={{ color: '#333333' }}>
@@ -343,9 +342,8 @@ export default function ClientPortal() {
               <button
                 type="submit"
                 disabled={requesting}
-                className="w-full py-3 rounded-xl font-bold text-white smooth-transition hover:shadow-lg"
+                className="w-full py-3 rounded-xl font-bold text-white smooth-transition hover:shadow-lg lyft-primary-btn"
                 style={{ 
-                  backgroundColor: '#A0826D',
                   opacity: requesting ? 0.7 : 1
                 }}
               >

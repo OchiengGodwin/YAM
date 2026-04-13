@@ -118,7 +118,7 @@ export default function ProSignup() {
   return (
     <main 
       className="min-h-screen flex items-center justify-center p-6"
-      style={{ background: 'linear-gradient(135deg, #FEFDFB 0%, #F5F0E8 100%)' }}
+      style={{ background: 'linear-gradient(140deg, #FEFDFB 0%, #F5F0E8 50%, rgba(37, 99, 235, 0.16) 100%)' }}
     >
       <div className="w-full max-w-md">
         {/* Logo */}
@@ -126,11 +126,11 @@ export default function ProSignup() {
           <Link href="/" className="text-4xl font-bold" style={{ color: '#A0826D' }}>
             YAM
           </Link>
-          <p className="mt-2 text-lg" style={{ color: '#5F4A42' }}>Become a Professional</p>
+          <p className="mt-2 text-lg" style={{ color: '#1E40AF' }}>Become a Professional</p>
         </div>
 
         <div 
-          className="rounded-3xl p-8 glass-effect"
+          className="rounded-3xl p-8 lyft-panel"
           style={{ background: 'rgba(255, 255, 255, 0.8)' }}
         >
           <h1 className="text-3xl font-bold mb-2" style={{ color: '#333333' }}>Join the network</h1>
@@ -156,8 +156,8 @@ export default function ProSignup() {
               <div 
                 className="w-12 h-12 rounded-full animate-spin mx-auto mb-4 border-4"
                 style={{ 
-                  borderColor: 'rgba(59, 130, 246, 0.3)',
-                  borderTopColor: '#3B82F6'
+                  borderColor: 'rgba(37, 99, 235, 0.4)',
+                  borderTopColor: '#1E40AF'
                 }}
               />
               <p className="font-semibold" style={{ color: '#333333' }}>Detecting your location...</p>
@@ -275,9 +275,8 @@ export default function ProSignup() {
               <button
                 type="submit"
                 disabled={loading}
-                className="w-full py-3 rounded-xl font-bold text-white smooth-transition hover:shadow-lg mt-2"
+                className="w-full py-3 rounded-xl font-bold text-white smooth-transition hover:shadow-lg mt-2 lyft-primary-btn"
                 style={{ 
-                  backgroundColor: '#A0826D',
                   opacity: loading ? 0.7 : 1
                 }}
               >
@@ -295,7 +294,7 @@ export default function ProSignup() {
             <Link 
               href="/login" 
               className="font-semibold smooth-transition hover:underline"
-              style={{ color: '#3B82F6' }}
+              style={{ color: '#1E40AF' }}
             >
               Sign in
             </Link>
