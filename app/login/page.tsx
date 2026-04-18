@@ -1,5 +1,3 @@
-/// <reference types="node" />
-
 'use client';
 
 export const dynamic = 'force-dynamic';
@@ -38,116 +36,122 @@ export default function LoginPage() {
   };
 
   return (
-    <main 
-      className="min-h-screen flex items-center justify-center p-6"
-      style={{ background: 'linear-gradient(140deg, #FEFDFB 0%, #F5F0E8 50%, rgba(37, 99, 235, 0.16) 100%)' }}
-    >
+    <main className="min-h-screen flex items-center justify-center p-6 bg-gradient-to-br from-white via-cyan-50 to-white">
       <div className="w-full max-w-md">
-        {/* Logo */}
-        <div className="text-center mb-8">
-          <Link href="/" className="text-4xl font-bold" style={{ color: '#A0826D' }}>
-            YAM
+        {/* Header */}
+        <div className="text-center mb-12">
+          <Link href="/" className="inline-block mb-4">
+            <span className="text-4xl font-black text-teal-600 italic">YAM</span>
           </Link>
-          <p className="mt-2 text-lg" style={{ color: '#1E40AF' }}>Professional Sign In</p>
+          <h1 className="text-3xl font-black text-slate-900 mb-2">Welcome back</h1>
+          <p className="text-slate-500">Sign in to your professional account</p>
         </div>
 
-        <div 
-          className="rounded-3xl p-8 lyft-panel"
-          style={{ background: 'rgba(255, 255, 255, 0.8)' }}
-        >
-          <h1 className="text-3xl font-bold mb-6" style={{ color: '#333333' }}>Welcome back</h1>
-
+        {/* Form Card */}
+        <div className="bg-white rounded-2xl shadow-xl shadow-teal-900/10 p-8 space-y-6">
           {error && (
-            <div 
-              className="mb-4 p-4 rounded-xl text-sm border"
-              style={{ 
-                backgroundColor: 'rgba(239, 68, 68, 0.1)',
-                borderColor: '#EF4444',
-                color: '#DC2626'
-              }}
-            >
-              {error}
+            <div className="p-4 rounded-xl bg-red-50 border border-red-200 text-red-700 text-sm flex items-start gap-3">
+              <span className="material-symbols-outlined text-lg mt-0.5 flex-shrink-0">error</span>
+              <span>{error}</span>
             </div>
           )}
 
-          <form onSubmit={handleLogin} className="space-y-4">
+          <form onSubmit={handleLogin} className="space-y-5">
+            {/* Email */}
             <div>
-              <label className="block text-sm font-semibold mb-2" style={{ color: '#5F4A42' }}>
-                Email
+              <label htmlFor="email" className="block text-sm font-semibold text-slate-700 mb-2">
+                Email Address
               </label>
               <input
+                id="email"
                 type="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required
-                className="w-full p-3 rounded-xl border-2 focus:outline-none smooth-transition"
-                style={{ 
-                  borderColor: '#A0826D',
-                  backgroundColor: '#FEFDFB',
-                  color: '#333333'
-                }}
-                onFocus={(e) => e.target.style.borderColor = '#3B82F6'}
-                onBlur={(e) => e.target.style.borderColor = '#A0826D'}
                 placeholder="you@example.com"
+                className="w-full px-4 py-3 border-2 border-slate-200 rounded-xl focus:border-blue-500 focus:ring-0 transition-colors bg-slate-50 text-slate-900 placeholder:text-slate-400"
               />
             </div>
 
+            {/* Password */}
             <div>
-              <label className="block text-sm font-semibold mb-2" style={{ color: '#5F4A42' }}>
-                Password
-              </label>
+              <div className="flex items-center justify-between mb-2">
+                <label htmlFor="password" className="text-sm font-semibold text-slate-700">
+                  Password
+                </label>
+                <a href="#" className="text-xs text-teal-600 hover:text-teal-700 font-semibold">
+                  Forgot password?
+                </a>
+              </div>
               <input
+                id="password"
                 type="password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 required
-                className="w-full p-3 rounded-xl border-2 focus:outline-none smooth-transition"
-                style={{ 
-                  borderColor: '#A0826D',
-                  backgroundColor: '#FEFDFB',
-                  color: '#333333'
-                }}
-                onFocus={(e) => e.target.style.borderColor = '#3B82F6'}
-                onBlur={(e) => e.target.style.borderColor = '#A0826D'}
                 placeholder="••••••••"
+                className="w-full px-4 py-3 border-2 border-slate-200 rounded-xl focus:border-teal-500 focus:ring-0 transition-colors bg-slate-50 text-slate-900 placeholder:text-slate-400"
               />
             </div>
 
+            {/* Sign In Button */}
             <button
               type="submit"
               disabled={loading}
-              className="w-full py-3 rounded-xl font-bold text-white smooth-transition hover:shadow-lg mt-2 lyft-primary-btn"
-              style={{ 
-                opacity: loading ? 0.7 : 1
-              }}
+              className="w-full py-3 rounded-xl font-bold text-white bg-gradient-to-r from-teal-600 to-cyan-600 hover:opacity-90 transition-all disabled:opacity-60 disabled:cursor-not-allowed mt-1 flex items-center justify-center gap-2"
             >
-              {loading ? 'Signing in...' : 'Sign In'}
+              {loading ? (
+                <>
+                  <div className="w-4 h-4 rounded-full border-2 border-white border-t-transparent animate-spin" />
+                  Signing in...
+                </>
+              ) : (
+                'Sign In'
+              )}
             </button>
           </form>
 
-          <p className="text-center text-sm mt-6" style={{ color: '#5F4A42' }}>
-            New professional?{' '}
-            <Link 
-              href="/signup" 
-              className="font-semibold smooth-transition hover:underline"
-              style={{ color: '#1E40AF' }}
-            >
-              Create an account
-            </Link>
-          </p>
-
-          <div className="mt-6 pt-6 border-t" style={{ borderColor: 'rgba(160, 130, 109, 0.2)' }}>
-            <p className="text-sm text-center mb-2" style={{ color: '#5F4A42' }}>
-              Looking for a service instead?
-            </p>
-            <Link 
-              href="/client" 
-              className="text-sm font-semibold smooth-transition hover:underline text-center block"
-              style={{ color: '#1E40AF' }}
-            >
-              Go to Client Portal →
-            </Link>
+          {/* Divider */}
+          <div className="flex items-center gap-3">
+            <div className="flex-1 h-px bg-slate-200"></div>
+            <span className="text-xs text-slate-400 font-medium">New here?</span>
+            <div className="flex-1 h-px bg-slate-200"></div>
           </div>
+
+          {/* Sign Up Link */}
+          <div>
+            <p className="text-center text-sm text-slate-600">
+              Don't have an account?{' '}
+              <Link href="/signup" className="text-teal-600 hover:text-teal-700 font-semibold transition-colors">
+                Create one now
+              </Link>
+            </p>
+          </div>
+        </div>
+
+        {/* Client Portal Link */}
+        <div className="mt-8 p-4 rounded-xl bg-cyan-50 border border-teal-200">
+          <p className="text-center text-sm text-slate-600 mb-2">
+            Looking for a service?
+          </p>
+          <Link 
+            href="/client"
+            className="block text-center text-sm font-semibold text-teal-600 hover:text-teal-700 transition-colors"
+          >
+            Go to Find a Pro →
+          </Link>
+        </div>
+
+        {/* Footer */}
+        <div className="mt-12 text-center text-xs text-slate-500 space-y-2">
+          <p>
+            <Link href="/help" className="hover:text-blue-600">Help</Link>
+            {' • '}
+            <Link href="/privacy" className="hover:text-blue-600">Privacy</Link>
+            {' • '}
+            <Link href="/terms" className="hover:text-blue-600">Terms</Link>
+          </p>
+          <p>© {new Date().getFullYear()} YAM Professional Services</p>
         </div>
       </div>
     </main>

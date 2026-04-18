@@ -46,18 +46,18 @@ export default function LandingPage() {
     <main className="min-h-screen bg-slate-50 text-slate-900">
       <header className="sticky top-0 z-50 bg-white/90 backdrop-blur-xl border-b border-slate-200">
         <nav className="mx-auto flex max-w-screen-2xl items-center justify-between px-6 py-4 md:px-10">
-          <div className="text-2xl font-black tracking-tight text-emerald-700">Yam</div>
+          <div className="text-2xl font-black tracking-tight text-teal-600">Yam</div>
           <div className="hidden md:flex items-center gap-8 text-sm font-semibold text-slate-700">
-            <Link href="#portfolio" className="hover:text-emerald-700 transition-colors">Portfolio</Link>
-            <Link href="#strategy" className="hover:text-emerald-700 transition-colors">Strategy</Link>
-            <Link href="#journal" className="hover:text-emerald-700 transition-colors">Journal</Link>
-            <Link href="#vault" className="hover:text-emerald-700 transition-colors">Vault</Link>
+            <Link href="#portfolio" className="hover:text-teal-600 transition-colors">Portfolio</Link>
+            <Link href="#strategy" className="hover:text-teal-600 transition-colors">Strategy</Link>
+            <Link href="#journal" className="hover:text-teal-600 transition-colors">Journal</Link>
+            <Link href="#vault" className="hover:text-teal-600 transition-colors">Vault</Link>
           </div>
           <div className="flex items-center gap-4">
-            <button className="text-slate-700 hover:text-emerald-700 transition-colors">Notifications</button>
+            <button className="text-slate-700 hover:text-teal-600 transition-colors">Notifications</button>
             <Link
               href="/signup"
-              className="rounded-xl bg-emerald-700 px-6 py-2 text-sm font-semibold text-white shadow-lg shadow-emerald-200/40 hover:opacity-95 transition"
+              className="rounded-xl bg-teal-600 px-6 py-2 text-sm font-semibold text-white shadow-lg shadow-teal-200/40 hover:opacity-95 transition"
             >
               Consultation
             </Link>
@@ -68,7 +68,7 @@ export default function LandingPage() {
       <section className="relative overflow-hidden bg-slate-50 px-6 py-16 lg:px-20">
         <div className="mx-auto grid max-w-screen-2xl gap-12 lg:grid-cols-2 lg:items-center">
           <div className="relative z-10">
-            <span className="block text-4xl font-semibold text-emerald-600">Yam Atelier</span>
+            <span className="block text-4xl font-semibold text-teal-600">Yam Atelier</span>
             <h1 className="mt-6 text-5xl font-black tracking-tight text-slate-900 md:text-7xl">
               Excellence
               <br />
@@ -80,13 +80,13 @@ export default function LandingPage() {
             <div className="mt-10 flex flex-wrap gap-4">
               <Link
                 href="#start"
-                className="rounded-2xl bg-emerald-700 px-8 py-4 text-sm font-semibold text-white shadow-lg shadow-emerald-200/40 hover:scale-[1.01] transition-transform"
+                className="rounded-2xl bg-teal-600 px-8 py-4 text-sm font-semibold text-white shadow-lg shadow-teal-200/40 hover:scale-[1.01] transition-transform"
               >
                 Start Journey
               </Link>
               <Link
                 href="#method"
-                className="rounded-2xl border border-emerald-700 px-8 py-4 text-sm font-semibold text-emerald-700 hover:bg-emerald-50 transition"
+                className="rounded-2xl border border-teal-600 px-8 py-4 text-sm font-semibold text-teal-600 hover:bg-teal-50 transition"
               >
                 Our Method
               </Link>
@@ -94,7 +94,7 @@ export default function LandingPage() {
           </div>
 
           <div className="relative">
-            <div className="absolute -top-12 -right-12 h-64 w-64 rounded-full bg-emerald-200/30 blur-3xl"></div>
+            <div className="absolute -top-12 -right-12 h-64 w-64 rounded-full bg-teal-200/30 blur-3xl"></div>
             <div className="absolute -bottom-8 -left-8 h-48 w-48 rounded-full bg-slate-200/50 blur-2xl"></div>
             <div className="relative overflow-hidden rounded-[2rem] shadow-2xl shadow-slate-300/30 rotate-2 transition-transform duration-700 hover:rotate-0">
               <img
@@ -102,15 +102,15 @@ export default function LandingPage() {
                 alt="Professional African consultant in a modern office"
                 className="h-[620px] w-full object-cover"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-emerald-700/30 to-transparent"></div>
+              <div className="absolute inset-0 bg-gradient-to-t from-teal-600/30 to-transparent"></div>
             </div>
-            <div className="absolute -bottom-10 right-0 z-20 max-w-xs rounded-[2rem] border-t-4 border-emerald-700 bg-white p-8 shadow-xl shadow-slate-300/30 -rotate-3">
+            <div className="absolute -bottom-10 right-0 z-20 max-w-xs rounded-[2rem] border-t-4 border-teal-600 bg-white p-8 shadow-xl shadow-slate-300/30 -rotate-3">
               <p className="text-sm text-slate-500">The Personal Touch</p>
               <p className="mt-3 text-base italic text-slate-600">
                 "Every strategy is a signature of our commitment to your growth."
               </p>
               <div className="mt-4 flex items-center gap-3 text-[10px] uppercase tracking-[0.2em] text-slate-400">
-                <span className="inline-block h-[2px] w-8 bg-emerald-600"></span>
+                <span className="inline-block h-[2px] w-8 bg-teal-600"></span>
                 Yam Advisory Team
               </div>
             </div>
@@ -123,9 +123,9 @@ export default function LandingPage() {
           <div className="mb-16 flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
             <div>
               <h2 className="text-4xl font-bold tracking-tight text-slate-900">Available Services</h2>
-              <div className="mt-3 h-1 w-24 rounded-full bg-emerald-200"></div>
+              <div className="mt-3 h-1 w-24 rounded-full bg-teal-200"></div>
             </div>
-            <p className="text-3xl font-semibold text-emerald-700">Bespoke Excellence</p>
+            <p className="text-3xl font-semibold text-teal-600">Bespoke Excellence</p>
           </div>
 
           <div className="grid gap-6 md:grid-cols-4 md:grid-rows-2">
@@ -145,7 +145,7 @@ export default function LandingPage() {
 
       <section id="method" className="bg-slate-100 py-24 px-6">
         <div className="mx-auto max-w-screen-xl px-4 text-center">
-          <h2 className="text-4xl font-black text-emerald-700 uppercase tracking-tight">The Atelier Workflow</h2>
+          <h2 className="text-4xl font-black text-teal-600 uppercase tracking-tight">The Atelier Workflow</h2>
           <p className="mt-4 text-2xl font-semibold text-slate-700">Meticulous in every detail</p>
         </div>
         <div className="relative mx-auto mt-16 grid max-w-screen-xl gap-12 px-4 md:grid-cols-3">
