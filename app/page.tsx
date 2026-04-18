@@ -1,143 +1,208 @@
-import Link from 'next/link';
+﻿import Link from 'next/link';
 
-const services = [
-  { icon: '🔧', label: 'Mechanic', desc: 'Car repairs & diagnostics' },
-  { icon: '⚡', label: 'Electrician', desc: 'Wiring & installations' },
-  { icon: '🔩', label: 'Plumber', desc: 'Pipes, leaks & fittings' },
-  { icon: '🪛', label: 'Carpenter', desc: 'Furniture & woodwork' },
-  { icon: '🎨', label: 'Painter', desc: 'Interior & exterior' },
-  { icon: '❄️', label: 'HVAC', desc: 'AC installs & repairs' },
+const serviceCards = [
+  {
+    icon: '🏛️',
+    title: 'Strategic Consulting',
+    description: 'Deep-dive market analysis and high-level strategy implementation for global scaling.',
+  },
+  {
+    icon: '💼',
+    title: 'Financial Management',
+    description: 'Tailored asset protection and growth structures for high-net-worth ecosystems.',
+  },
+  {
+    icon: '✅',
+    title: 'Brand Sovereignty',
+    description: 'Build a resilient identity that commands trust across markets and cultures.',
+  },
+  {
+    icon: '⚙️',
+    title: 'Digital Infrastructure',
+    description: 'Digital systems and operational architecture designed for ambition and scale.',
+  },
 ];
 
-const steps = [
-  { step: '01', title: 'Choose a service', desc: 'Pick what you need from our list of verified professionals.' },
-  { step: '02', title: 'Get matched instantly', desc: 'We find the nearest available pro using your GPS location.' },
-  { step: '03', title: 'Job done', desc: 'Your pro arrives, fixes the issue, and you rate the experience.' },
+const workflowSteps = [
+  {
+    step: '01',
+    title: 'The Audition',
+    description: 'A deep discovery session to align our values and identify your unique architectural needs.',
+  },
+  {
+    step: '02',
+    title: 'The Blueprint',
+    description: 'Co-creating a bespoke strategy document that outlines every pivot and milestone for your ascent.',
+  },
+  {
+    step: '03',
+    title: 'The Signature',
+    description: 'Seamless execution with high-touch monitoring and iterative refinement of your portfolio.',
+  },
 ];
 
 export default function LandingPage() {
   return (
-    <main className="min-h-screen lyft-gradient-bg">
-      <nav className="lyft-topbar sticky top-0 z-40 flex justify-between items-center px-6 md:px-12 py-5">
-        <span className="text-3xl font-bold text-[var(--primary-brown)]">YAM</span>
-        <div className="flex gap-4">
-          <Link 
-            href="/login" 
-            className="smooth-transition lyft-secondary-btn px-6 py-2.5 rounded-full text-sm font-semibold hover:-translate-y-0.5"
-          >
-            Pro Login
-          </Link>
-          <Link 
-            href="/signup" 
-            className="smooth-transition lyft-primary-btn px-6 py-2.5 rounded-full text-sm font-bold hover:-translate-y-0.5"
-          >
-            Join as Pro
-          </Link>
-        </div>
-      </nav>
-
-      <section className="px-6 pt-16 pb-12 max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
-        <div>
-          <p className="lyft-pill text-xs font-semibold uppercase tracking-wider mb-4 inline-flex px-3 py-1">
-          ✨ On-Demand Professional Services
-          </p>
-          <h1 className="text-5xl md:text-7xl font-bold leading-tight mb-6 text-[var(--foreground)]">
-            Book skilled pros
-            <br />
-            in minutes,
-            <br />
-            <span className="text-[var(--deep-blue)]">right near you</span>
-          </h1>
-          <p className="text-lg max-w-xl mb-10 text-[var(--dark-brown)]">
-            Lyft-style speed for home and field services. Clients request instantly, professionals accept and navigate in real time.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4">
-            <Link
-              href="/client"
-              className="smooth-transition lyft-primary-btn px-8 py-4 rounded-full font-semibold text-lg text-center hover:-translate-y-0.5"
-            >
-              I Need a Service
-            </Link>
+    <main className="min-h-screen bg-slate-50 text-slate-900">
+      <header className="sticky top-0 z-50 bg-white/90 backdrop-blur-xl border-b border-slate-200">
+        <nav className="mx-auto flex max-w-screen-2xl items-center justify-between px-6 py-4 md:px-10">
+          <div className="text-2xl font-black tracking-tight text-emerald-700">Yam</div>
+          <div className="hidden md:flex items-center gap-8 text-sm font-semibold text-slate-700">
+            <Link href="#portfolio" className="hover:text-emerald-700 transition-colors">Portfolio</Link>
+            <Link href="#strategy" className="hover:text-emerald-700 transition-colors">Strategy</Link>
+            <Link href="#journal" className="hover:text-emerald-700 transition-colors">Journal</Link>
+            <Link href="#vault" className="hover:text-emerald-700 transition-colors">Vault</Link>
+          </div>
+          <div className="flex items-center gap-4">
+            <button className="text-slate-700 hover:text-emerald-700 transition-colors">Notifications</button>
             <Link
               href="/signup"
-              className="smooth-transition lyft-secondary-btn px-8 py-4 rounded-full font-semibold text-lg text-center hover:-translate-y-0.5"
+              className="rounded-xl bg-emerald-700 px-6 py-2 text-sm font-semibold text-white shadow-lg shadow-emerald-200/40 hover:opacity-95 transition"
             >
-              I&apos;m a Professional
+              Consultation
             </Link>
           </div>
-        </div>
+        </nav>
+      </header>
 
-        <div className="lyft-panel p-6">
-          <div className="rounded-2xl p-5 bg-[rgba(37,99,235,0.1)] border-2 border-[rgba(37,99,235,0.4)] mb-4">
-            <p className="text-xs uppercase tracking-wider font-bold text-[var(--deep-blue)]">Live Demand</p>
-            <p className="text-2xl font-bold text-[var(--foreground)] mt-2">27 requests in your area</p>
+      <section className="relative overflow-hidden bg-slate-50 px-6 py-16 lg:px-20">
+        <div className="mx-auto grid max-w-screen-2xl gap-12 lg:grid-cols-2 lg:items-center">
+          <div className="relative z-10">
+            <span className="block text-4xl font-semibold text-emerald-600">Yam Atelier</span>
+            <h1 className="mt-6 text-5xl font-black tracking-tight text-slate-900 md:text-7xl">
+              Excellence
+              <br />
+              Handcrafted.
+            </h1>
+            <p className="mt-8 max-w-xl text-lg leading-8 text-slate-600">
+              Bridging African expertise with global ambition. Bespoke advisory services tailored for the visionary elite.
+            </p>
+            <div className="mt-10 flex flex-wrap gap-4">
+              <Link
+                href="#start"
+                className="rounded-2xl bg-emerald-700 px-8 py-4 text-sm font-semibold text-white shadow-lg shadow-emerald-200/40 hover:scale-[1.01] transition-transform"
+              >
+                Start Journey
+              </Link>
+              <Link
+                href="#method"
+                className="rounded-2xl border border-emerald-700 px-8 py-4 text-sm font-semibold text-emerald-700 hover:bg-emerald-50 transition"
+              >
+                Our Method
+              </Link>
+            </div>
           </div>
-          <div className="grid grid-cols-2 gap-3 text-sm">
-            <div className="rounded-xl p-3 bg-[rgba(160,130,109,0.12)] border border-[rgba(160,130,109,0.3)]">
-              <p className="text-[var(--dark-brown)]">Avg match time</p>
-              <p className="font-bold text-lg text-[var(--foreground)]">1m 42s</p>
-            </div>
-            <div className="rounded-xl p-3 bg-[rgba(37,99,235,0.1)] border border-[rgba(37,99,235,0.35)]">
-              <p className="text-[var(--deep-blue)]">Verified pros</p>
-              <p className="font-bold text-lg text-[var(--foreground)]">1,200+</p>
-            </div>
-          </div>
-          <Link href="/map" className="mt-4 block text-center py-3 rounded-xl font-bold lyft-secondary-btn smooth-transition hover:-translate-y-0.5">
-            Open Live Map
-          </Link>
-        </div>
-      </section>
 
-      <section className="px-6 pb-20 max-w-6xl mx-auto">
-        <h2 className="text-center text-sm uppercase tracking-widest mb-12 font-bold text-[var(--primary-brown)]">
-          Available Services
-        </h2>
-        <div className="grid grid-cols-2 md:grid-cols-3 gap-6">
-          {services.map((s) => (
-            <div
-              key={s.label}
-              className="smooth-transition lyft-panel p-6 hover:-translate-y-1"
-            >
-              <div className="text-4xl mb-4">{s.icon}</div>
-              <p className="font-bold text-lg mb-1 text-[var(--foreground)]">{s.label}</p>
-              <p className="text-sm text-[var(--dark-brown)]">{s.desc}</p>
+          <div className="relative">
+            <div className="absolute -top-12 -right-12 h-64 w-64 rounded-full bg-emerald-200/30 blur-3xl"></div>
+            <div className="absolute -bottom-8 -left-8 h-48 w-48 rounded-full bg-slate-200/50 blur-2xl"></div>
+            <div className="relative overflow-hidden rounded-[2rem] shadow-2xl shadow-slate-300/30 rotate-2 transition-transform duration-700 hover:rotate-0">
+              <img
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuAUPco_TgAPw0aloBqPDKvrvtOId4EtX_DZWMS849KhSU0R3CkCHFvvXikLK0hPt7zZ7fgq_DgUbJP8gSmkct1xBHwYj-03dG8g7fcANSvJpochWJPpjfXsLR_sJVyxxB4tUbUGOdB_7NfevaiHtBd__gchKccFN-l-CmGYV-W1P4zqLgpJn71QDjiwA6EjMD9apfmSU3uubxT94Z3fno6qEEV39Is8XH4X4NUfPZHgrpqIiwQ2EqcyL2IHDR_PimaXrvasYcR8L5-w"
+                alt="Professional African consultant in a modern office"
+                className="h-[620px] w-full object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-emerald-700/30 to-transparent"></div>
             </div>
-          ))}
-        </div>
-      </section>
-
-      <section className="py-20 px-6 bg-[rgba(160,130,109,0.08)] border-y-2 border-[rgba(37,99,235,0.22)]">
-        <h2 className="text-center text-4xl font-bold mb-16 text-[var(--foreground)]">How It Works</h2>
-        <div className="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
-          {steps.map((item) => (
-            <div key={item.step} className="text-center">
-              <div className="inline-flex items-center justify-center w-16 h-16 rounded-full mb-6 font-bold text-xl text-white bg-[var(--deep-blue)] border-4 border-[rgba(37,99,235,0.3)]">
-                {item.step}
+            <div className="absolute -bottom-10 right-0 z-20 max-w-xs rounded-[2rem] border-t-4 border-emerald-700 bg-white p-8 shadow-xl shadow-slate-300/30 -rotate-3">
+              <p className="text-sm text-slate-500">The Personal Touch</p>
+              <p className="mt-3 text-base italic text-slate-600">
+                "Every strategy is a signature of our commitment to your growth."
+              </p>
+              <div className="mt-4 flex items-center gap-3 text-[10px] uppercase tracking-[0.2em] text-slate-400">
+                <span className="inline-block h-[2px] w-8 bg-emerald-600"></span>
+                Yam Advisory Team
               </div>
-              <p className="font-bold text-xl mb-3 text-[var(--foreground)]">{item.title}</p>
-              <p className="text-base text-[var(--dark-brown)]">{item.desc}</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="portfolio" className="py-24 px-6 lg:px-8">
+        <div className="mx-auto max-w-screen-2xl">
+          <div className="mb-16 flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
+            <div>
+              <h2 className="text-4xl font-bold tracking-tight text-slate-900">Available Services</h2>
+              <div className="mt-3 h-1 w-24 rounded-full bg-emerald-200"></div>
+            </div>
+            <p className="text-3xl font-semibold text-emerald-700">Bespoke Excellence</p>
+          </div>
+
+          <div className="grid gap-6 md:grid-cols-4 md:grid-rows-2">
+            {serviceCards.map((service) => (
+              <article
+                key={service.title}
+                className="rounded-[2rem] border border-slate-200 bg-white p-8 shadow-sm transition hover:-translate-y-1 hover:shadow-lg"
+              >
+                <div className="text-4xl">{service.icon}</div>
+                <h3 className="mt-6 text-2xl font-bold text-slate-900">{service.title}</h3>
+                <p className="mt-4 text-sm leading-7 text-slate-600">{service.description}</p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section id="method" className="bg-slate-100 py-24 px-6">
+        <div className="mx-auto max-w-screen-xl px-4 text-center">
+          <h2 className="text-4xl font-black text-emerald-700 uppercase tracking-tight">The Atelier Workflow</h2>
+          <p className="mt-4 text-2xl font-semibold text-slate-700">Meticulous in every detail</p>
+        </div>
+        <div className="relative mx-auto mt-16 grid max-w-screen-xl gap-12 px-4 md:grid-cols-3">
+          <div className="hidden md:block absolute left-0 top-1/2 h-px w-full bg-slate-300/70 -translate-y-1/2"></div>
+          {workflowSteps.map((step) => (
+            <div key={step.step} className="relative z-10 flex flex-col items-center text-center">
+              <div className="mb-8 flex h-16 w-16 items-center justify-center rounded-full bg-white text-2xl font-black text-emerald-700 shadow-lg shadow-slate-200/50 border-4 border-emerald-200">
+                {step.step}
+              </div>
+              <h4 className="text-xl font-bold text-slate-900">{step.title}</h4>
+              <p className="mt-4 max-w-sm text-sm leading-7 text-slate-600">{step.description}</p>
             </div>
           ))}
         </div>
       </section>
 
-      <section className="py-20 px-6 text-center">
-        <h2 className="text-4xl font-bold mb-6 text-[var(--foreground)]">
-          Skilled and ready to earn?
-        </h2>
-        <p className="text-lg max-w-2xl mx-auto mb-10 text-[var(--dark-brown)]">
-          Join verified professionals already growing their income by connecting with nearby clients.
-        </p>
-        <Link
-          href="/signup"
-          className="inline-block smooth-transition lyft-primary-btn px-8 py-4 rounded-full font-bold text-lg hover:-translate-y-0.5"
-        >
-          Start Earning Today
-        </Link>
+      <section className="py-24 px-6">
+        <div className="mx-auto flex max-w-screen-2xl flex-col overflow-hidden rounded-[2.5rem] bg-emerald-700 text-white lg:flex-row">
+          <div className="flex w-full flex-col justify-center p-12 lg:w-1/2 lg:p-20">
+            <p className="text-4xl font-semibold text-emerald-200">Join the Circle</p>
+            <h2 className="mt-6 text-4xl font-black leading-tight md:text-5xl">
+              Are you a specialist
+              <br />
+              of African origin?
+            </h2>
+            <p className="mt-8 max-w-lg text-lg leading-8 text-emerald-100/90">
+              We are expanding our network of elite consultants. If you offer world-class expertise and a commitment to handcrafted excellence, we invite you to join Yam Atelier.
+            </p>
+            <Link
+              href="/signup"
+              className="mt-10 inline-flex w-fit rounded-xl bg-white px-10 py-5 text-lg font-black text-emerald-700 transition hover:opacity-90"
+            >
+              Apply for Partnership
+            </Link>
+          </div>
+
+          <div className="relative h-[400px] lg:w-1/2">
+            <img
+              src="https://lh3.googleusercontent.com/aida-public/AB6AXuDdUj_TIpTqpNFzgpreLQmqQNmdsRceWRVBI3DsinFCLKoS4gRbXxxi3Yg894TW1P-Z6zs_ijpXDRtrG6by85ZpSETmanYHFoEqcfI0GIdm5mrLGpiwYQI6knuN8GWx4lh29G7KsE2kHpg6paml8aorGRCIuaKehqThUmRFbZCtHQRdfKLLViVREmWkLsmZTehP144D6THnQ0qflKl_cgEaiBqW8AX8F0qQl8oDcYnycQXBSpZKjT_GcSY6tuo0n51KxXcTHTL6OTcj"
+              alt="Diverse professionals discussing strategy in a bright minimalist space"
+              className="absolute inset-0 h-full w-full object-cover brightness-75 transition duration-1000 hover:brightness-100"
+            />
+            <div className="absolute inset-0 bg-emerald-800/30"></div>
+          </div>
+        </div>
       </section>
 
-      <footer className="text-center py-10 text-sm border-t-2 border-[rgba(37,99,235,0.22)] text-[var(--primary-brown)]">
-        © {new Date().getFullYear()} YAM · Professionals & clients, matched instantly
+      <footer className="bg-slate-100 py-12 px-6 text-slate-600">
+        <div className="mx-auto flex max-w-screen-2xl flex-col gap-8 md:flex-row md:items-center md:justify-between">
+          <div className="text-3xl font-semibold text-emerald-700">Yam</div>
+          <div className="flex flex-wrap items-center gap-8 text-xs font-light">
+            <Link href="#" className="hover:underline underline-offset-4 decoration-emerald-200">Terms of Service</Link>
+            <Link href="#" className="hover:underline underline-offset-4 decoration-emerald-200">Privacy Policy</Link>
+            <Link href="#" className="hover:underline underline-offset-4 decoration-emerald-200">Methodology</Link>
+          </div>
+          <p className="text-xs text-slate-500">© {new Date().getFullYear()} Yam Advisory. Handcrafted for excellence.</p>
+        </div>
       </footer>
     </main>
   );
