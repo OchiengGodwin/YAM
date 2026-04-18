@@ -11,9 +11,9 @@ export default function RequestService() {
     if (e.target.files) {
       Array.from(e.target.files).forEach(file => {
         const reader = new FileReader();
-        reader.onload = (event: ProgressEvent<FileReader>) => {
-          if (event.target?.result) {
-            setPhotos(prev => [...prev, event.target.result as string]);
+        reader.onload = () => {
+          if (reader.result) {
+            setPhotos(prev => [...prev, reader.result as string]);
           }
         };
         reader.readAsDataURL(file);
