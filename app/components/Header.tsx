@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { useRouter, usePathname } from 'next/navigation';
 import { createClient } from '@supabase/supabase-js';
@@ -16,7 +16,7 @@ export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [user, setUser] = useState<any>(null);
 
-  React.useEffect(() => {
+  useEffect(() => {
     const getUser = async () => {
       const { data: { session } } = await supabase.auth.getSession();
       setUser(session?.user || null);
