@@ -11,7 +11,7 @@ export default function RequestService() {
     if (e.target.files) {
       Array.from(e.target.files).forEach(file => {
         const reader = new FileReader();
-        reader.onload = (event) => {
+        reader.onload = (event: ProgressEvent<FileReader>) => {
           if (event.target?.result) {
             setPhotos(prev => [...prev, event.target.result as string]);
           }
