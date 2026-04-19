@@ -2,12 +2,12 @@
 
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
+import { useSearchParams } from 'next/navigation';
 
-interface BookingClientProps {
-  professionalId?: string | null;
-}
+export default function BookingClient() {
+  const searchParams = useSearchParams();
+  const professionalId = searchParams.get('professional');
 
-export default function BookingClient({ professionalId }: BookingClientProps) {
   const [step, setStep] = useState(1);
   const [professional, setProfessional] = useState<any>(null);
   const [formData, setFormData] = useState({

@@ -78,7 +78,7 @@ export default function Home() {
           <div className="text-center">
             <h1 className="text-5xl md:text-6xl font-bold mb-6">
               Get help with<br />
-              <span className="text-orange-100">life's tasks</span>
+              <span className="text-orange-100">life&apos;s tasks</span>
             </h1>
             <p className="text-xl md:text-2xl text-orange-100 mb-12 max-w-2xl mx-auto">
               Connect with trusted local professionals for all your home and business needs
@@ -89,18 +89,24 @@ export default function Home() {
               <div className="flex flex-col md:flex-row gap-2">
                 <div className="flex-1">
                   <input
+                    id="search-input"
+                    name="search"
                     type="text"
                     placeholder="What do you need help with?"
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
                     className="w-full px-4 py-3 text-gray-900 placeholder-gray-500 border-0 focus:ring-0 text-lg"
+                    aria-label="Search for services"
                   />
                 </div>
                 <div className="md:w-48">
                   <select
+                    id="profession-select"
+                    name="profession"
                     value={profession}
                     onChange={(e) => setProfession(e.target.value)}
                     className="w-full px-4 py-3 text-gray-900 border-0 focus:ring-0 bg-gray-50 rounded-lg"
+                    aria-label="Select a profession"
                   >
                     <option value="">All Services</option>
                     <option value="Electrician">Electrician</option>
@@ -115,6 +121,7 @@ export default function Home() {
                 <button
                   onClick={handleSearch}
                   className="bg-orange-500 hover:bg-orange-600 text-white px-8 py-3 rounded-lg font-semibold text-lg transition-colors"
+                  aria-label="Search for professionals"
                 >
                   Get Started
                 </button>
