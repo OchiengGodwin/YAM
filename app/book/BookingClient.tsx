@@ -5,8 +5,9 @@ import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
 
 export default function BookingClient() {
+  const [mounted, setMounted] = useState(false);
   const searchParams = useSearchParams();
-  const professionalId = searchParams.get('professional');
+  const professionalId = mounted ? searchParams.get('professional') : null;
 
   const [step, setStep] = useState(1);
   const [professional, setProfessional] = useState<any>(null);
@@ -22,6 +23,10 @@ export default function BookingClient() {
   });
 
   const API_URL = process.env.NEXT_PUBLIC_API_URL || 'https://yam-mg62.onrender.com';
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   useEffect(() => {
     if (professionalId) {
@@ -52,7 +57,7 @@ export default function BookingClient() {
 
   const calculateTotal = () => {
     const hourlyRate = professional?.hourly_rate || 120;
-    const hours = parseInt(formData.duration, 10);
+    const hours = parseInt(formData.duration, 10) || 1;
     return hourlyRate * hours;
   };
 
