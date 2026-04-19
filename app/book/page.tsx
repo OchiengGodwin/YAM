@@ -150,8 +150,8 @@ export default function BookPage() {
 
               <div>
                 <label className="block text-sm font-semibold text-slate-700 mb-2">Full Name</label>
-                <input                  title="Booking Time"
-                  aria-label="Booking Time"                  title="Full Name"
+                <input
+                  title="Full Name"
                   aria-label="Full Name"
                   type="text"
                   required
