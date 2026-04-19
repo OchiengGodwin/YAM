@@ -1,209 +1,206 @@
-﻿import Link from 'next/link';
+﻿'use client';
 
-const serviceCards = [
+import { useState } from 'react';
+import Link from 'next/link';
+import { useRouter } from 'next/navigation';
+
+const FEATURED_PROS = [
   {
-    icon: '🏛️',
-    title: 'Strategic Consulting',
-    description: 'Deep-dive market analysis and high-level strategy implementation for global scaling.',
+    id: 1,
+    name: 'Marcus Chen',
+    title: 'Master Electrician',
+    rating: 4.9,
+    reviews: 324,
+    price: 120,
+    image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuDC_DQu8E5zDR6uWp3-nCtrO5QLDFgtwchccgdaBZii5lRPM8_QRgHzJ0HHcCm8x88HdA6Ot8hYD1frEl5QGG2cuYDWIpUF_7NflKOpiVhZsZ22COiIA4NwYDBl_FOXg6H_C0A5j_5pmdtn0z6U_xBaY1jJ73_5tsk8XS9ZRYxP674wBwrYnwMZ1ft3M1M9_BJAXsvT0V99wqR3y7P0RMjuHDwBLoKQxGqRa2KKLWCuqKiypeoqCRCjPvo-iaWYtQ7PNKQRWzBbBwlq',
   },
   {
-    icon: '💼',
-    title: 'Financial Management',
-    description: 'Tailored asset protection and growth structures for high-net-worth ecosystems.',
+    id: 2,
+    name: 'Elena Rodriguez',
+    title: 'Interior Architect',
+    rating: 5.0,
+    reviews: 512,
+    price: 185,
+    image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuAW9z3TgCbDX5E2PfCyOAsXNRT0fPs8sVQs8b7XauSzEbdhcfE-brWLTDy1QbR9MOg-lkEGPbBIKG9a3fesd68wyeoZDTIabMiXQ4wNlNQ1Ec5x4Dl8x3gIbRJhB_oCG2EFwGInvrYTSuPknbDDimsV4dmZV9cJvxDn1vSssruNakvVZb5Xe-BZQ0GTLqCF6XnC4EH8TbnFPzvMQtMziGAfvYMFwYYZGtXVXpAJQO9d4-BbpVaENoQ97drBchKo0dvoNfoRuETgkZIC',
   },
   {
-    icon: '✅',
-    title: 'Brand Sovereignty',
-    description: 'Build a resilient identity that commands trust across markets and cultures.',
+    id: 3,
+    name: 'Julian Voss',
+    title: 'Custom Cabinetry',
+    rating: 4.8,
+    reviews: 287,
+    price: 95,
+    image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuAmivu-6zvzcDxaHRjZ7w83YsgI3APMCqRN6Bse8glmDoElMNKxZf9j8dvGQ3tBwYiJZDfP4AcD_P06VDOVD3GkUZD7DwC645Lp29BWZSvAgfILEpKUvmaYuzQeB4XUuj4JzY03PAaY6xcj2edtw2j-M-2JOsXxqib3S1AYEyg51cIvnDjYNvGxrczDAySrIVZQa4S1HMMpS6zGA7mAA83lPJdyQXlgutSt885ODGCbDNZzZ9z9JtRgKyTzvdveJ8dlTfUNbY9QJome',
   },
   {
-    icon: '⚙️',
-    title: 'Digital Infrastructure',
-    description: 'Digital systems and operational architecture designed for ambition and scale.',
+    id: 4,
+    name: 'Sarah Sterling',
+    title: 'Landscape Designer',
+    rating: 4.9,
+    reviews: 401,
+    price: 150,
+    image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuC6YaWDIxLw3E5Q51pBSdyoDDRFqQAAKCCexD5Ie9cdTm-1v2iRU__9A3ZeVPoYk5KGL0T1YDiU33RYGiLzPBWjgiDeBapKLhdgEmtvHBiuftpQfwQ5CJz8G9Jc3mb5Q2sRotVsGdFW1AhdffdmQq4g6wLS3R1yFBoeaE--3GchXNC3U1OlqMr2Gzr8ZXeXKG0sa_aYT4iZme6JJsGmwROpxSdk-n00iuHIkO3-jQSgoxigNFZgn3pI0fHFxavPG-c0FYbO2zOwLQAp',
   },
 ];
 
-const workflowSteps = [
-  {
-    step: '01',
-    title: 'The Audition',
-    description: 'A deep discovery session to align our values and identify your unique architectural needs.',
-  },
-  {
-    step: '02',
-    title: 'The Blueprint',
-    description: 'Co-creating a bespoke strategy document that outlines every pivot and milestone for your ascent.',
-  },
-  {
-    step: '03',
-    title: 'The Signature',
-    description: 'Seamless execution with high-touch monitoring and iterative refinement of your portfolio.',
-  },
-];
+export default function Home() {
+  const router = useRouter();
+  const [searchQuery, setSearchQuery] = useState('');
+  const [profession, setProfession] = useState('');
 
-export default function LandingPage() {
+  const handleSearch = () => {
+    const params = new URLSearchParams();
+    if (searchQuery) params.append('search', searchQuery);
+    if (profession) params.append('profession', profession);
+    router.push(`/discover?${params.toString()}`);
+  };
+
   return (
-    <main className="min-h-screen bg-slate-50 text-slate-900">
-      <header className="sticky top-0 z-50 bg-white/90 backdrop-blur-xl border-b border-slate-200">
-        <nav className="mx-auto flex max-w-screen-2xl items-center justify-between px-6 py-4 md:px-10">
-          <div className="text-2xl font-black tracking-tight text-teal-600">Yam</div>
-          <div className="hidden md:flex items-center gap-8 text-sm font-semibold text-slate-700">
-            <Link href="#portfolio" className="hover:text-teal-600 transition-colors">Portfolio</Link>
-            <Link href="#strategy" className="hover:text-teal-600 transition-colors">Strategy</Link>
-            <Link href="#journal" className="hover:text-teal-600 transition-colors">Journal</Link>
-            <Link href="#vault" className="hover:text-teal-600 transition-colors">Vault</Link>
-          </div>
-          <div className="flex items-center gap-4">
-            <button className="text-slate-700 hover:text-teal-600 transition-colors">Notifications</button>
-            <Link
-              href="/signup"
-              className="rounded-xl bg-teal-600 px-6 py-2 text-sm font-semibold text-white shadow-lg shadow-teal-200/40 hover:opacity-95 transition"
-            >
-              Consultation
-            </Link>
-          </div>
-        </nav>
-      </header>
+    <main className="bg-white">
+      {/* Hero Section */}
+      <div className="relative h-96 bg-gradient-to-br from-slate-900 via-teal-900 to-slate-900 overflow-hidden">
+        <div className="absolute inset-0 opacity-10">
+          <div className="absolute top-20 left-10 w-72 h-72 bg-teal-500 rounded-full mix-blend-multiply filter blur-3xl"></div>
+          <div className="absolute top-40 right-10 w-72 h-72 bg-cyan-500 rounded-full mix-blend-multiply filter blur-3xl"></div>
+        </div>
 
-      <section className="relative overflow-hidden bg-slate-50 px-6 py-16 lg:px-20">
-        <div className="mx-auto grid max-w-screen-2xl gap-12 lg:grid-cols-2 lg:items-center">
-          <div className="relative z-10">
-            <span className="block text-4xl font-semibold text-teal-600">Yam Atelier</span>
-            <h1 className="mt-6 text-5xl font-black tracking-tight text-slate-900 md:text-7xl">
-              Excellence
-              <br />
-              Handcrafted.
-            </h1>
-            <p className="mt-8 max-w-xl text-lg leading-8 text-slate-600">
-              Bridging African expertise with global ambition. Bespoke advisory services tailored for the visionary elite.
-            </p>
-            <div className="mt-10 flex flex-wrap gap-4">
-              <Link
-                href="#start"
-                className="rounded-2xl bg-teal-600 px-8 py-4 text-sm font-semibold text-white shadow-lg shadow-teal-200/40 hover:scale-[1.01] transition-transform"
-              >
-                Start Journey
-              </Link>
-              <Link
-                href="#method"
-                className="rounded-2xl border border-teal-600 px-8 py-4 text-sm font-semibold text-teal-600 hover:bg-teal-50 transition"
-              >
-                Our Method
-              </Link>
-            </div>
-          </div>
+        <div className="relative h-full flex flex-col items-center justify-center px-4">
+          <h1 className="text-5xl md:text-6xl font-black text-white mb-2 text-center">YAM</h1>
+          <p className="text-xl text-teal-100 mb-12 text-center">Professional services on demand</p>
 
-          <div className="relative">
-            <div className="absolute -top-12 -right-12 h-64 w-64 rounded-full bg-teal-200/30 blur-3xl"></div>
-            <div className="absolute -bottom-8 -left-8 h-48 w-48 rounded-full bg-slate-200/50 blur-2xl"></div>
-            <div className="relative overflow-hidden rounded-[2rem] shadow-2xl shadow-slate-300/30 rotate-2 transition-transform duration-700 hover:rotate-0">
-              <img
-                src="https://lh3.googleusercontent.com/aida-public/AB6AXuAUPco_TgAPw0aloBqPDKvrvtOId4EtX_DZWMS849KhSU0R3CkCHFvvXikLK0hPt7zZ7fgq_DgUbJP8gSmkct1xBHwYj-03dG8g7fcANSvJpochWJPpjfXsLR_sJVyxxB4tUbUGOdB_7NfevaiHtBd__gchKccFN-l-CmGYV-W1P4zqLgpJn71QDjiwA6EjMD9apfmSU3uubxT94Z3fno6qEEV39Is8XH4X4NUfPZHgrpqIiwQ2EqcyL2IHDR_PimaXrvasYcR8L5-w"
-                alt="Professional African consultant in a modern office"
-                className="h-[620px] w-full object-cover"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-teal-600/30 to-transparent"></div>
-            </div>
-            <div className="absolute -bottom-10 right-0 z-20 max-w-xs rounded-[2rem] border-t-4 border-teal-600 bg-white p-8 shadow-xl shadow-slate-300/30 -rotate-3">
-              <p className="text-sm text-slate-500">The Personal Touch</p>
-              <p className="mt-3 text-base italic text-slate-600">
-                "Every strategy is a signature of our commitment to your growth."
-              </p>
-              <div className="mt-4 flex items-center gap-3 text-[10px] uppercase tracking-[0.2em] text-slate-400">
-                <span className="inline-block h-[2px] w-8 bg-teal-600"></span>
-                Yam Advisory Team
+          {/* Search Bar */}
+          <div className="w-full max-w-2xl bg-white rounded-2xl shadow-2xl p-6 space-y-4">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              <div>
+                <label className="block text-xs font-semibold text-slate-600 mb-2">What do you need?</label>
+                <input
+                  type="text"
+                  placeholder="Electrician, Plumber, Designer..."
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  onKeyDown={(e) => e.key === 'Enter' && handleSearch()}
+                  className="w-full px-4 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-transparent outline-none text-sm"
+                />
+              </div>
+              <div>
+                <label className="block text-xs font-semibold text-slate-600 mb-2">Profession</label>
+                <select
+                  title="Profession"
+                  aria-label="Profession"
+                  value={profession}
+                  onChange={(e) => setProfession(e.target.value)}
+                  className="w-full px-4 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-transparent outline-none text-sm"
+                >
+                  <option value="">All professions</option>
+                  <option value="Electrician">Electrician</option>
+                  <option value="Plumber">Plumber</option>
+                  <option value="Carpenter">Carpenter</option>
+                  <option value="Designer">Designer</option>
+                </select>
+              </div>
+              <div className="flex items-end">
+                <button
+                  onClick={handleSearch}
+                  className="w-full px-6 py-2 bg-gradient-to-r from-teal-600 to-cyan-600 text-white font-semibold rounded-lg hover:opacity-90 transition-all"
+                >
+                  Search
+                </button>
               </div>
             </div>
           </div>
         </div>
-      </section>
+      </div>
 
-      <section id="portfolio" className="py-24 px-6 lg:px-8">
-        <div className="mx-auto max-w-screen-2xl">
-          <div className="mb-16 flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
-            <div>
-              <h2 className="text-4xl font-bold tracking-tight text-slate-900">Available Services</h2>
-              <div className="mt-3 h-1 w-24 rounded-full bg-teal-200"></div>
-            </div>
-            <p className="text-3xl font-semibold text-teal-600">Bespoke Excellence</p>
+      {/* Featured Professionals */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <div className="mb-12">
+          <h2 className="text-3xl font-bold text-slate-900 mb-2">Featured Professionals</h2>
+          <p className="text-slate-600">Highly rated experts ready to help</p>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          {FEATURED_PROS.map((pro) => (
+            <Link
+              key={pro.id}
+              href={`/professional/${pro.id}`}
+              className="group cursor-pointer"
+            >
+              <div className="bg-white rounded-xl overflow-hidden border border-slate-200 hover:shadow-lg transition-all duration-300 transform hover:scale-105">
+                {/* Image */}
+                <div className="relative h-48 bg-slate-200 overflow-hidden">
+                  <img
+                    src={pro.image}
+                    alt={pro.name}
+                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+                  />
+                </div>
+
+                {/* Info */}
+                <div className="p-4">
+                  <h3 className="font-semibold text-slate-900">{pro.name}</h3>
+                  <p className="text-sm text-slate-600 mb-3">{pro.title}</p>
+
+                  <div className="flex items-center justify-between mb-3">
+                    <div className="flex items-center gap-1">
+                      <span className="material-symbols-outlined text-sm text-amber-400">star</span>
+                      <span className="text-sm font-semibold text-slate-900">{pro.rating}</span>
+                      <span className="text-xs text-slate-500">({pro.reviews})</span>
+                    </div>
+                  </div>
+
+                  <p className="text-lg font-bold text-slate-900">${pro.price}<span className="text-xs text-slate-600 font-normal">/hr</span></p>
+                </div>
+              </div>
+            </Link>
+          ))}
+        </div>
+      </div>
+
+      {/* How It Works */}
+      <div className="bg-slate-50 py-16">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold text-slate-900 mb-2">How It Works</h2>
+            <p className="text-slate-600">Get professional help in 4 simple steps</p>
           </div>
 
-          <div className="grid gap-6 md:grid-cols-4 md:grid-rows-2">
-            {serviceCards.map((service) => (
-              <article
-                key={service.title}
-                className="rounded-[2rem] border border-slate-200 bg-white p-8 shadow-sm transition hover:-translate-y-1 hover:shadow-lg"
-              >
-                <div className="text-4xl">{service.icon}</div>
-                <h3 className="mt-6 text-2xl font-bold text-slate-900">{service.title}</h3>
-                <p className="mt-4 text-sm leading-7 text-slate-600">{service.description}</p>
-              </article>
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+            {[
+              { step: '1', title: 'Search', desc: 'Find the right professional for your needs' },
+              { step: '2', title: 'Review', desc: 'Check ratings, reviews, and availability' },
+              { step: '3', title: 'Book', desc: 'Schedule and confirm your appointment' },
+              { step: '4', title: 'Complete', desc: 'Get work done and rate the experience' },
+            ].map((item) => (
+              <div key={item.step} className="text-center">
+                <div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-gradient-to-r from-teal-600 to-cyan-600 text-white font-bold mb-4">
+                  {item.step}
+                </div>
+                <h3 className="font-semibold text-slate-900 mb-2">{item.title}</h3>
+                <p className="text-sm text-slate-600">{item.desc}</p>
+              </div>
             ))}
           </div>
         </div>
-      </section>
+      </div>
 
-      <section id="method" className="bg-slate-100 py-24 px-6">
-        <div className="mx-auto max-w-screen-xl px-4 text-center">
-          <h2 className="text-4xl font-black text-teal-600 uppercase tracking-tight">The Atelier Workflow</h2>
-          <p className="mt-4 text-2xl font-semibold text-slate-700">Meticulous in every detail</p>
+      {/* CTA */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 text-center">
+        <h2 className="text-3xl font-bold text-slate-900 mb-4">Ready to get started?</h2>
+        <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          <Link
+            href="/discover"
+            className="px-8 py-3 bg-gradient-to-r from-teal-600 to-cyan-600 text-white font-semibold rounded-lg hover:opacity-90 transition-all"
+          >
+            Browse Professionals
+          </Link>
+          <Link
+            href="/signup"
+            className="px-8 py-3 border-2 border-teal-600 text-teal-600 font-semibold rounded-lg hover:bg-teal-50 transition-all"
+          >
+            Become a Professional
+          </Link>
         </div>
-        <div className="relative mx-auto mt-16 grid max-w-screen-xl gap-12 px-4 md:grid-cols-3">
-          <div className="hidden md:block absolute left-0 top-1/2 h-px w-full bg-slate-300/70 -translate-y-1/2"></div>
-          {workflowSteps.map((step) => (
-            <div key={step.step} className="relative z-10 flex flex-col items-center text-center">
-              <div className="mb-8 flex h-16 w-16 items-center justify-center rounded-full bg-white text-2xl font-black text-emerald-700 shadow-lg shadow-slate-200/50 border-4 border-emerald-200">
-                {step.step}
-              </div>
-              <h4 className="text-xl font-bold text-slate-900">{step.title}</h4>
-              <p className="mt-4 max-w-sm text-sm leading-7 text-slate-600">{step.description}</p>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      <section className="py-24 px-6">
-        <div className="mx-auto flex max-w-screen-2xl flex-col overflow-hidden rounded-[2.5rem] bg-emerald-700 text-white lg:flex-row">
-          <div className="flex w-full flex-col justify-center p-12 lg:w-1/2 lg:p-20">
-            <p className="text-4xl font-semibold text-emerald-200">Join the Circle</p>
-            <h2 className="mt-6 text-4xl font-black leading-tight md:text-5xl">
-              Are you a specialist
-              <br />
-              of African origin?
-            </h2>
-            <p className="mt-8 max-w-lg text-lg leading-8 text-emerald-100/90">
-              We are expanding our network of elite consultants. If you offer world-class expertise and a commitment to handcrafted excellence, we invite you to join Yam Atelier.
-            </p>
-            <Link
-              href="/signup"
-              className="mt-10 inline-flex w-fit rounded-xl bg-white px-10 py-5 text-lg font-black text-emerald-700 transition hover:opacity-90"
-            >
-              Apply for Partnership
-            </Link>
-          </div>
-
-          <div className="relative h-[400px] lg:w-1/2">
-            <img
-              src="https://lh3.googleusercontent.com/aida-public/AB6AXuDdUj_TIpTqpNFzgpreLQmqQNmdsRceWRVBI3DsinFCLKoS4gRbXxxi3Yg894TW1P-Z6zs_ijpXDRtrG6by85ZpSETmanYHFoEqcfI0GIdm5mrLGpiwYQI6knuN8GWx4lh29G7KsE2kHpg6paml8aorGRCIuaKehqThUmRFbZCtHQRdfKLLViVREmWkLsmZTehP144D6THnQ0qflKl_cgEaiBqW8AX8F0qQl8oDcYnycQXBSpZKjT_GcSY6tuo0n51KxXcTHTL6OTcj"
-              alt="Diverse professionals discussing strategy in a bright minimalist space"
-              className="absolute inset-0 h-full w-full object-cover brightness-75 transition duration-1000 hover:brightness-100"
-            />
-            <div className="absolute inset-0 bg-emerald-800/30"></div>
-          </div>
-        </div>
-      </section>
-
-      <footer className="bg-slate-100 py-12 px-6 text-slate-600">
-        <div className="mx-auto flex max-w-screen-2xl flex-col gap-8 md:flex-row md:items-center md:justify-between">
-          <div className="text-3xl font-semibold text-emerald-700">Yam</div>
-          <div className="flex flex-wrap items-center gap-8 text-xs font-light">
-            <Link href="#" className="hover:underline underline-offset-4 decoration-emerald-200">Terms of Service</Link>
-            <Link href="#" className="hover:underline underline-offset-4 decoration-emerald-200">Privacy Policy</Link>
-            <Link href="#" className="hover:underline underline-offset-4 decoration-emerald-200">Methodology</Link>
-          </div>
-          <p className="text-xs text-slate-500">© {new Date().getFullYear()} Yam Advisory. Handcrafted for excellence.</p>
-        </div>
-      </footer>
+      </div>
     </main>
   );
 }
