@@ -4,6 +4,17 @@ import { useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 
+const SERVICES = [
+  { name: 'Cleaning', icon: 'cleaning_services', color: 'bg-blue-500' },
+  { name: 'Moving', icon: 'local_shipping', color: 'bg-green-500' },
+  { name: 'Handyman', icon: 'build', color: 'bg-orange-500' },
+  { name: 'Electrical', icon: 'bolt', color: 'bg-yellow-500' },
+  { name: 'Plumbing', icon: 'plumbing', color: 'bg-cyan-500' },
+  { name: 'Painting', icon: 'format_paint', color: 'bg-purple-500' },
+  { name: 'Gardening', icon: 'grass', color: 'bg-green-600' },
+  { name: 'Carpentry', icon: 'carpenter', color: 'bg-amber-600' },
+];
+
 const FEATURED_PROS = [
   {
     id: 1,
@@ -12,7 +23,8 @@ const FEATURED_PROS = [
     rating: 4.9,
     reviews: 324,
     price: 120,
-    image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuDC_DQu8E5zDR6uWp3-nCtrO5QLDFgtwchccgdaBZii5lRPM8_QRgHzJ0HHcCm8x88HdA6Ot8hYD1frEl5QGG2cuYDWIpUF_7NflKOpiVhZsZ22COiIA4NwYDBl_FOXg6H_C0A5j_5pmdtn0z6U_xBaY1jJ73_5tsk8XS9ZRYxP674wBwrYnwMZ1ft3M1M9_BJAXsvT0V99wqR3y7P0RMjuHDwBLoKQxGqRa2KKLWCuqKiypeoqCRCjPvo-iaWYtQ7PNKQRWzBbBwlq',
+    image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face',
+    verified: true,
   },
   {
     id: 2,
@@ -21,7 +33,8 @@ const FEATURED_PROS = [
     rating: 5.0,
     reviews: 512,
     price: 185,
-    image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuAW9z3TgCbDX5E2PfCyOAsXNRT0fPs8sVQs8b7XauSzEbdhcfE-brWLTDy1QbR9MOg-lkEGPbBIKG9a3fesd68wyeoZDTIabMiXQ4wNlNQ1Ec5x4Dl8x3gIbRJhB_oCG2EFwGInvrYTSuPknbDDimsV4dmZV9cJvxDn1vSssruNakvVZb5Xe-BZQ0GTLqCF6XnC4EH8TbnFPzvMQtMziGAfvYMFwYYZGtXVXpAJQO9d4-BbpVaENoQ97drBchKo0dvoNfoRuETgkZIC',
+    image: 'https://images.unsplash.com/photo-1494790108755-2616b612b786?w=150&h=150&fit=crop&crop=face',
+    verified: true,
   },
   {
     id: 3,
@@ -30,7 +43,8 @@ const FEATURED_PROS = [
     rating: 4.8,
     reviews: 287,
     price: 95,
-    image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuAmivu-6zvzcDxaHRjZ7w83YsgI3APMCqRN6Bse8glmDoElMNKxZf9j8dvGQ3tBwYiJZDfP4AcD_P06VDOVD3GkUZD7DwC645Lp29BWZSvAgfILEpKUvmaYuzQeB4XUuj4JzY03PAaY6xcj2edtw2j-M-2JOsXxqib3S1AYEyg51cIvnDjYNvGxrczDAySrIVZQa4S1HMMpS6zGA7mAA83lPJdyQXlgutSt885ODGCbDNZzZ9z9JtRgKyTzvdveJ8dlTfUNbY9QJome',
+    image: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&h=150&fit=crop&crop=face',
+    verified: true,
   },
   {
     id: 4,
@@ -39,7 +53,8 @@ const FEATURED_PROS = [
     rating: 4.9,
     reviews: 401,
     price: 150,
-    image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuC6YaWDIxLw3E5Q51pBSdyoDDRFqQAAKCCexD5Ie9cdTm-1v2iRU__9A3ZeVPoYk5KGL0T1YDiU33RYGiLzPBWjgiDeBapKLhdgEmtvHBiuftpQfwQ5CJz8G9Jc3mb5Q2sRotVsGdFW1AhdffdmQq4g6wLS3R1yFBoeaE--3GchXNC3U1OlqMr2Gzr8ZXeXKG0sa_aYT4iZme6JJsGmwROpxSdk-n00iuHIkO3-jQSgoxigNFZgn3pI0fHFxavPG-c0FYbO2zOwLQAp',
+    image: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=150&h=150&fit=crop&crop=face',
+    verified: true,
   },
 ];
 
@@ -47,6 +62,203 @@ export default function Home() {
   const router = useRouter();
   const [searchQuery, setSearchQuery] = useState('');
   const [profession, setProfession] = useState('');
+
+  const handleSearch = () => {
+    const params = new URLSearchParams();
+    if (searchQuery) params.set('search', searchQuery);
+    if (profession) params.set('profession', profession);
+    router.push(`/discover?${params.toString()}`);
+  };
+
+  return (
+    <div className="min-h-screen bg-gray-50">
+      {/* Hero Section */}
+      <section className="bg-gradient-to-br from-orange-400 via-orange-500 to-orange-600 text-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+          <div className="text-center">
+            <h1 className="text-5xl md:text-6xl font-bold mb-6">
+              Get help with<br />
+              <span className="text-orange-100">life's tasks</span>
+            </h1>
+            <p className="text-xl md:text-2xl text-orange-100 mb-12 max-w-2xl mx-auto">
+              Connect with trusted local professionals for all your home and business needs
+            </p>
+
+            {/* Search Bar */}
+            <div className="max-w-2xl mx-auto bg-white rounded-2xl p-2 shadow-2xl">
+              <div className="flex flex-col md:flex-row gap-2">
+                <div className="flex-1">
+                  <input
+                    type="text"
+                    placeholder="What do you need help with?"
+                    value={searchQuery}
+                    onChange={(e) => setSearchQuery(e.target.value)}
+                    className="w-full px-4 py-3 text-gray-900 placeholder-gray-500 border-0 focus:ring-0 text-lg"
+                  />
+                </div>
+                <div className="md:w-48">
+                  <select
+                    value={profession}
+                    onChange={(e) => setProfession(e.target.value)}
+                    className="w-full px-4 py-3 text-gray-900 border-0 focus:ring-0 bg-gray-50 rounded-lg"
+                  >
+                    <option value="">All Services</option>
+                    <option value="Electrician">Electrician</option>
+                    <option value="Plumber">Plumber</option>
+                    <option value="Carpenter">Carpenter</option>
+                    <option value="Designer">Designer</option>
+                    <option value="Mechanic">Mechanic</option>
+                    <option value="Cleaner">Cleaner</option>
+                    <option value="Gardener">Gardener</option>
+                  </select>
+                </div>
+                <button
+                  onClick={handleSearch}
+                  className="bg-orange-500 hover:bg-orange-600 text-white px-8 py-3 rounded-lg font-semibold text-lg transition-colors"
+                >
+                  Get Started
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Popular Services */}
+      <section className="py-16 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="text-3xl font-bold text-center text-gray-900 mb-12">
+            Popular Services
+          </h2>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+            {SERVICES.map((service) => (
+              <Link
+                key={service.name}
+                href={`/discover?profession=${service.name}`}
+                className="group bg-white border border-gray-200 rounded-xl p-6 hover:shadow-lg hover:border-orange-300 transition-all duration-200"
+              >
+                <div className={`w-12 h-12 ${service.color} rounded-lg flex items-center justify-center mb-4 group-hover:scale-110 transition-transform`}>
+                  <span className="material-symbols-outlined text-white text-2xl">
+                    {service.icon}
+                  </span>
+                </div>
+                <h3 className="font-semibold text-gray-900 group-hover:text-orange-600 transition-colors">
+                  {service.name}
+                </h3>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Featured Professionals */}
+      <section className="py-16 bg-gray-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold text-gray-900 mb-4">
+              Featured Professionals
+            </h2>
+            <p className="text-lg text-gray-600">
+              Meet some of our top-rated service providers
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {FEATURED_PROS.map((pro) => (
+              <Link
+                key={pro.id}
+                href={`/professional/${pro.id}`}
+                className="group bg-white rounded-xl shadow-sm hover:shadow-lg transition-all duration-200 overflow-hidden"
+              >
+                <div className="aspect-square overflow-hidden">
+                  <img
+                    src={pro.image}
+                    alt={pro.name}
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-200"
+                  />
+                </div>
+                <div className="p-4">
+                  <div className="flex items-center gap-2 mb-2">
+                    <h3 className="font-semibold text-gray-900">{pro.name}</h3>
+                    {pro.verified && (
+                      <span className="material-symbols-outlined text-green-600 text-sm" title="Verified">
+                        verified
+                      </span>
+                    )}
+                  </div>
+                  <p className="text-sm text-gray-600 mb-2">{pro.title}</p>
+                  <div className="flex items-center gap-1 mb-3">
+                    <span className="material-symbols-outlined text-yellow-400 text-sm">star</span>
+                    <span className="font-semibold text-sm">{pro.rating}</span>
+                    <span className="text-sm text-gray-500">({pro.reviews})</span>
+                  </div>
+                  <div className="flex items-center justify-between">
+                    <span className="text-lg font-bold text-gray-900">${pro.price}/hr</span>
+                    <span className="text-orange-600 font-semibold group-hover:text-orange-700">
+                      Book now →
+                    </span>
+                  </div>
+                </div>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Trust Section */}
+      <section className="py-16 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center">
+            <h2 className="text-3xl font-bold text-gray-900 mb-8">
+              Why choose YAM?
+            </h2>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              <div className="text-center">
+                <div className="w-16 h-16 bg-orange-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <span className="material-symbols-outlined text-orange-600 text-2xl">verified_user</span>
+                </div>
+                <h3 className="font-semibold text-gray-900 mb-2">Verified Professionals</h3>
+                <p className="text-gray-600">All our service providers are background-checked and verified</p>
+              </div>
+              <div className="text-center">
+                <div className="w-16 h-16 bg-orange-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <span className="material-symbols-outlined text-orange-600 text-2xl">schedule</span>
+                </div>
+                <h3 className="font-semibold text-gray-900 mb-2">Flexible Scheduling</h3>
+                <p className="text-gray-600">Book services at your convenience, 7 days a week</p>
+              </div>
+              <div className="text-center">
+                <div className="w-16 h-16 bg-orange-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <span className="material-symbols-outlined text-orange-600 text-2xl">security</span>
+                </div>
+                <h3 className="font-semibold text-gray-900 mb-2">Secure Payments</h3>
+                <p className="text-gray-600">Your payments are protected and only released after job completion</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* CTA Section */}
+      <section className="py-16 bg-orange-500 text-white">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <h2 className="text-3xl md:text-4xl font-bold mb-4">
+            Ready to get started?
+          </h2>
+          <p className="text-xl text-orange-100 mb-8">
+            Join thousands of satisfied customers who trust YAM for their service needs
+          </p>
+          <Link
+            href="/discover"
+            className="inline-block bg-white text-orange-600 px-8 py-4 rounded-lg font-semibold text-lg hover:bg-orange-50 transition-colors"
+          >
+            Browse Services
+          </Link>
+        </div>
+      </section>
+    </div>
+  );
+}
 
   const handleSearch = () => {
     const params = new URLSearchParams();
